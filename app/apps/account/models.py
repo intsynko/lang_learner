@@ -15,7 +15,7 @@ class User(auth_models.AbstractUser):
     )
     STATUS_CHOICES_DICT = dict(STATUS_CHOICES)
 
-    email = models.EmailField(_("Email address"), blank=False)
+    email = models.EmailField(_("Email address"), blank=False, unique=True)
     is_email_proved = models.BooleanField(_("Is email proved"), default=False)
 
     date_created = models.DateTimeField(_("Date account created"), auto_now_add=True, null=True)
@@ -25,3 +25,7 @@ class User(auth_models.AbstractUser):
 
     status = models.CharField(_("Status"), max_length=16, choices=STATUS_CHOICES, default=STATUS_CREATED, db_index=True)
     language = models.CharField(_("Language"), max_length=5, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+

@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>MAIN PAGE</h1>
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Dictionaries from users all over the world</h1>
+            <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
 
-</body>
-</html>
+            <form class="w-100 me-3" role="search">
+                <div class="input-group mb-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}
