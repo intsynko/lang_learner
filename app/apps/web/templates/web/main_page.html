@@ -1,19 +1,65 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Dictionaries from users all over the world</h1>
-            <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
 
-            <form class="w-100 me-3" role="search">
-                <div class="input-group mb-3">
-                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-                </div>
-            </form>
-      </div>
-    </div>
-  </section>
+<style>
+.clickable-row {
+    cursor: pointer;
+}
+.clickable-row:hover{
+    background: #f1efef;
+}
+</style>
+
+<section class="py-5 text-center container">
+<div class="row py-lg-5">
+  <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Dictionaries from users all over the world</h1>
+        <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
+
+        <form class="w-100 me-3" role="search" method="POST" action="/">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+        </form>
+
+      <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Languages</th>
+          <th scope="col">Name</th>
+          <th scope="col">Level</th>
+          <th scope="col">Tags</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dict in dictionaries%}
+            <tr class="clickable-row" onclick="window.location='/dictionary/{{dict.id}}/';">
+              <th scope="col">
+                  <img src="{{dict.lang_from}}" alt="lang_from">
+                  <img src="{{dict.lang_to}}" alt="lang_to">
+                  {{dict.lang}}
+              </th>
+                <th scope="col">{{dict.name}}</th>
+              <th scope="col">{{dict.level}}</th>
+                <th scope="col">
+                {% for tag in dict.tags %}
+                    <span class="badge badge-warning">{{tag}}</span>
+                {% endfor %}
+                </th>
+              <th scope="col">
+                  {{dict.rating}}
+                  <img src="/assets/icons8-star-half-empty-48.png" alt="rate">
+              </th>
+            </tr>
+        {% endfor %}
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
 {% endblock %}

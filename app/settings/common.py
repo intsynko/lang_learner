@@ -7,3 +7,4 @@ from .inc_django.logging import *  # noqa
 from .inc_django.middleware import *  # noqa
 from .inc_django.static import *  # noqa
 from .inc_django.templates import *  # noqa
+from .inc_django.media import *

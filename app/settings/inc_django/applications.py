@@ -11,5 +11,6 @@ INSTALLED_APPS = [
 
     # Local apps
     'apps.account',
+    'apps.dictionary',
     'apps.web',
 ]

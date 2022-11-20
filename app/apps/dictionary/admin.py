@@ -1,0 +1,39 @@
+from django.contrib import admin
+from django.contrib.admin import ModelAdmin
+from django.contrib.auth.admin import UserAdmin as _UserAdmin
+from django.utils.translation import gettext_lazy as _
+
+from . import models
+
+
+admin.site.register(models.Level, ModelAdmin)
+admin.site.register(models.Tag, ModelAdmin)
+admin.site.register(models.Rate, ModelAdmin)
+admin.site.register(models.Language, ModelAdmin)
+
+
+@admin.register(models.Dictionary)
+class DictionaryAdmin(admin.ModelAdmin):
+    list_display = (
+        "owner",
+        "name",
+        "language_from",
+        "language_to",
+        "is_public",
+        "date_created",
+    )
+
+    readonly_fields = ("date_created",)
+
+    fieldsets = (
+        (
+            _(""),
+            {
+                "fields": ["name", "owner", "language_from", "language_to", "is_public",
+                           "date_created", "level"],
+            },
+        ),
+    )
+    list_per_page = 20
+    search_fields = ("name", "language_from__code", "language_to__code", "tags__name")
+    list_filter = ("language_from", "language_to", "is_public", "level")
