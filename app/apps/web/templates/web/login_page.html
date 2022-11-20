@@ -7,67 +7,31 @@
 {% block content %}
 <div class="container d-flex align-items-center justify-content-center vh-100">
     <main class="text-center">
-      <div style="min-width: 300px;">
-        <form id="form_sign_in">
+      <div style="min-width: 300px; max-width: 500px">
+        <form method="POST">
+          {% csrf_token %}
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
+           <div>
+            {% for type, error in form.error_messages.items %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+            {% endfor %}
+          </div>
+
           <div class="form-floating">
-            <input v-model="email" type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+            <input type="email" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating">
-            <input v-model="password" type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
-          <button @click="login" class="w-100 btn btn-lg btn-primary" type="button">Sign in</button>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
           <p class="mt-5 mb-3 text-muted">© Language Learner</p>
         </form>
       </div>
     </main>
 </div>
-
-<script>
-  const { createApp } = Vue
-
-  createApp({
-    data() {
-      return {
-        email: '',
-        password: '',
-      }
-    },
-    mounted() {
-        let user = localStorage.getItem('user');
-        if (user != null){
-          console.log(`already loggined`);
-          this.move_to_nex_page()
-        }
-    },
-    methods: {
-      move_to_nex_page(){
-        let params = new URLSearchParams(window.location.search);
-            let next = params.get("next") || '';
-            window.location.replace(`http://127.0.0.1:8000/${next}`);
-      },
-      login(event) {
-        axios
-          .post('http://127.0.0.1:8000/api/v1/token/', {
-            email: this.email,
-            password: this.password,
-          })
-          .then(response => {
-            localStorage.setItem('user', JSON.stringify(response.data));
-            console.log('sucess');
-            this.move_to_nex_page();
-          })
-          .catch(error => {
-            if (error.response) {
-              alert(`${error.response.data.detail}`)
-              console.log(error.response.data);
-            }
-          })
-      }
-    },
-  }).mount('#content')
-</script>
 {% endblock %}

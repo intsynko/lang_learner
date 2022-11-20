@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header%}
+
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <main class="text-center">
+      <div style="min-width: 300px;">
+        <form>
+          {% csrf_token %}
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign out</button>
+          <p class="mt-5 mb-3 text-muted">© Language Learner</p>
+        </form>
+      </div>
+    </main>
+</div>
+{% endblock %}
