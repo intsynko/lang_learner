@@ -1,0 +1,5 @@
+/db/
+/docker/.dockerenv
+/.env
+/.idea/
+/venv/
