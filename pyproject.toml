@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "language leaner"
+version = "0.0.1"
+description = "site for lanuages learningn"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.3"
+django-environ = "^0.9.0"
+psycopg2 = "^2.9.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

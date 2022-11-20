@@ -1,0 +1,11 @@
+version: "3"
+services:
+  db:
+    image: postgres:11.1-alpine
+    env_file: docker/.dockerenv
+    restart: always
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+      - ./db/backup:/backup
+    ports:
+      - "5432:5432"
