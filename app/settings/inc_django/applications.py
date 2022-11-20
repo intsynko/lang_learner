@@ -9,6 +9,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Local apps
-    # 'apps.account',
+    'apps.account',
     'apps.web',
 ]
