@@ -33,14 +33,22 @@ class Dictionary(models.Model):
     name = models.CharField(_("Name"), max_length=50)
     owner = models.ForeignKey("account.User", verbose_name=_("Owner"), on_delete=models.PROTECT, related_name="dicts")
     date_created = models.DateField(_("Date"), auto_now=True)
+    pinned = models.ManyToManyField("account.User", verbose_name=_("Pinned"), related_name="dicts_pinned")
 
     is_public = models.BooleanField(_("Is public"), default=True)
     tags = models.ManyToManyField(to=Tag, blank=True, verbose_name=_("Tags"), related_name="dicts")
     level = models.ForeignKey(Level, verbose_name=_("Level"), on_delete=models.PROTECT, related_name="dicts")
 
     @classmethod
+    def queryset_wit_rating(cls):
+        return cls.objects.annotate(
+            rates_cnt=Count("rates"),
+            average_rate=Avg("rates__amount")
+        )
+
+    @classmethod
     def get_top(cls, search: str = None, amount: int = 10, lang_from: str = None, lang_to: str = None, level: str = None):
-        queryset = cls.objects
+        queryset = cls.queryset_wit_rating()
 
         if search:
             queryset = queryset.filter(name__icontains=search)
@@ -53,10 +61,7 @@ class Dictionary(models.Model):
         if level:
             queryset = queryset.filter(level__name=level)
 
-        return queryset.annotate(
-            rates_cnt=Count("rates"),
-            average_rate=Avg("rates__amount")
-        ).order_by("rates_cnt", "average_rate")[:amount]
+        return queryset.order_by("rates_cnt", "average_rate")[:amount]
 
     def __str__(self):
         return f"{self.name} [{self.language_from.code}-{self.language_to.code}] ({self.owner.email})"
@@ -70,3 +75,6 @@ class Rate(models.Model):
 
     def __str__(self):
         return f"{self.dictionary.name} ({self.owner.email}): {self.amount}"
+
+    class Meta:
+        unique_together = (("user", "dictionary"),)

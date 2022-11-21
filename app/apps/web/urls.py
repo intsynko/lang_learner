@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from apps.web.views import MainPage, LoginPage
+from apps.web.views import MainPage, LoginPage, DictionaryPage, DictionaryPin
 
 urlpatterns = [
     path('', MainPage.as_view(), name="main"),
@@ -13,7 +13,9 @@ urlpatterns = [
     # path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done",),
     # path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm",),
     # path("reset/done/", auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete",),
-    path('login/', LoginPage.as_view(), name="login")
+    path('login/', LoginPage.as_view(), name="login"),
+    path('dictionary/<int:id>/', DictionaryPage.as_view(), name="dictionary-detail"),
+    path('dictionary/<int:id>/pin/', DictionaryPin.as_view(), name="dictionary-pin")
 ]
 
 app_name = "web"

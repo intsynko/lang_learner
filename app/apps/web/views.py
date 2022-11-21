@@ -1,3 +1,8 @@
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
 from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 from rest_framework import serializers
@@ -33,16 +38,56 @@ class MainPage(TemplateView):
         return context
 
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        return self.render_to_response(context)
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         search = self.request.POST.get('search', None)
-
-        context = self.get_context_data(**kwargs, search=search)
-        return self.render_to_response(context)
+        return super().get(request, *args, **kwargs, search=search)
 
 
 class LoginPage(auth_views.LoginView):
     redirect_authenticated_user = True
     template_name = "web/login_page.html"
+
+
+class DictionaryDetailSerializer(DictionarySerializer):
+    owner = serializers.CharField(source='owner.username')
+    rates_count = serializers.IntegerField(source='rates_cnt')
+    date = serializers.DateField(source='date_created')
+    pinned = serializers.SerializerMethodField()
+
+    def get_pinned(self, obj):
+        return obj.pinned.filter(id=self.context['request'].user.id).exists()
+
+
+class DictionaryPage(TemplateView):
+    template_name = "web/dictionary_page.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            dict = dict_models.Dictionary.queryset_wit_rating().get(id=kwargs['id'])
+        except dict_models.Dictionary.DoesNotExist:
+            raise Http404()
+        context['dictionary'] = DictionaryDetailSerializer(instance=dict, context={"request": kwargs['request']}).data
+        return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs, request=request)
+        return self.render_to_response(context)
+
+
+class DictionaryPin(DictionaryPage):
+
+    @method_decorator(csrf_protect)
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        id = kwargs['id']
+        try:
+            dict = dict_models.Dictionary.queryset_wit_rating().get(id=id)
+        except dict_models.Dictionary.DoesNotExist:
+            raise Http404()
+        dict.pinned.add(request.user)
+        dict.save()
+        return redirect(f'/dictionary/{id}/')
+        # return super().post(request, *args, **kwargs)

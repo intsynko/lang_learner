@@ -44,10 +44,12 @@
                   {{dict.lang}}
               </th>
                 <th scope="col">{{dict.name}}</th>
-              <th scope="col">{{dict.level}}</th>
+              <th scope="col">
+                  <span class="badge bg-warning">{{dict.level}}</span>
+              </th>
                 <th scope="col">
                 {% for tag in dict.tags %}
-                    <span class="badge badge-warning">{{tag}}</span>
+                    <span class="badge bg-secondary">{{tag}}</span>
                 {% endfor %}
                 </th>
               <th scope="col">

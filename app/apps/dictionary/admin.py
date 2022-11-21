@@ -30,7 +30,7 @@ class DictionaryAdmin(admin.ModelAdmin):
             _(""),
             {
                 "fields": ["name", "owner", "language_from", "language_to", "is_public",
-                           "date_created", "level"],
+                           "date_created", "level", "tags"],
             },
         ),
     )
