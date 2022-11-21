@@ -55,13 +55,17 @@ class DictionaryDetailSerializer(DictionarySerializer):
     rates_count = serializers.IntegerField(source='rates_cnt')
     date = serializers.DateField(source='date_created')
     pinned = serializers.SerializerMethodField()
+    is_mine = serializers.SerializerMethodField()
 
     def get_pinned(self, obj):
         return obj.pinned.filter(id=self.context['request'].user.id).exists()
 
+    def get_is_mine(self, obj):
+        return obj.owner == self.context['request'].user
 
-class DictionaryPage(TemplateView):
-    template_name = "web/dictionary_page.html"
+
+class DictionaryDetailPage(TemplateView):
+    template_name = "web/dictionary_detail_page.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,7 +81,7 @@ class DictionaryPage(TemplateView):
         return self.render_to_response(context)
 
 
-class DictionaryPin(DictionaryPage):
+class DictionaryPin(DictionaryDetailPage):
 
     @method_decorator(csrf_protect)
     @method_decorator(login_required)
@@ -91,3 +95,22 @@ class DictionaryPin(DictionaryPage):
         dict.save()
         return redirect(f'/dictionary/{id}/')
         # return super().post(request, *args, **kwargs)
+
+
+class DictionaryPage(TemplateView):
+    template_name = "web/dictionary_page.html"
+
+    @method_decorator(csrf_protect)
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs, request=request)
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dicts = dict_models.Dictionary.my(user=kwargs['request'].user)
+        context['dictionaries'] = [
+            DictionaryDetailSerializer(instance=dict, context={"request": kwargs['request']}).data
+            for dict in dicts
+        ]
+        return context

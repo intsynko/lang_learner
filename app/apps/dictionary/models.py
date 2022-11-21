@@ -1,6 +1,6 @@
 
 from django.db import models
-from django.db.models import Count, Avg
+from django.db.models import Count, Avg, Q
 from django.utils.translation import gettext_lazy as _
 
 
@@ -47,11 +47,15 @@ class Dictionary(models.Model):
         )
 
     @classmethod
+    def my(cls, user):
+        return cls.queryset_wit_rating().filter(Q(owner=user) | Q(pinned__id=user.id))
+
+    @classmethod
     def get_top(cls, search: str = None, amount: int = 10, lang_from: str = None, lang_to: str = None, level: str = None):
         queryset = cls.queryset_wit_rating()
 
         if search:
-            queryset = queryset.filter(name__icontains=search)
+            queryset = queryset.filter(Q(name__icontains=search) | Q(tag__name__icontains=search))
 
         if lang_from:
             queryset = queryset.filter(lang_from__code=lang_from)

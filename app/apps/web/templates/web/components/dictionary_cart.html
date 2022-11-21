@@ -1,0 +1,81 @@
+<div class="container d-flex justify-content-center">
+    <div class="card mb-4 rounded-3 shadow-sm" style="width: 400px">
+      <div class="card-header {% if dictionary.is_mine %}text-bg-secondary{% endif%}">
+          <h2>
+          {{dictionary.name}}
+          {% if not dictionary.is_mine %}
+              {% if not dictionary.pinned and user.is_authenticated %}
+              <form action="pin/" method="POST">
+                  {% csrf_token %}
+                  <span style="float:right;">
+                      <button type="submit" class="btn btn-default">
+                        <img src="/assets/icons8-pin-30.png" alt="pin">
+                      </button>
+                  </span>
+              </form>
+              {% else%}
+                  <span style="float:right;">
+                        <img src="/assets/icons8-pin-disabled-30.png" alt="pin">
+                  </span>
+              {% endif %}
+          {% endif %}
+          </h2>
+      </div>
+      <div class="card-body">
+           <table class="table">
+              <thead>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="col">Owner:</th>
+                    <th scope="col">
+                        {% if not dictionary.is_mine %}
+                            <a href="/?owner={{dictionary.owner}}">{{dictionary.owner}}<a>
+                        {% else %}
+                        You
+                        {% endif %}
+                    </th>
+                </tr>
+                <tr>
+                  <th scope="col">Level:</th>
+                  <th scope="col">
+                      <a href="/?level={{dictionary.level}}" role="button">
+                        <span class="badge bg-warning">{{dictionary.level}}</span>
+                      </a>
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="col">Languages:</th>
+                    <th scope="col">
+                      <img src="{{dictionary.lang_from}}" alt="lang_from">
+                      <img src="{{dictionary.lang_to}}" alt="lang_to">
+                      <small class="text-muted fw-light">{{dictionary.lang}}</small>
+                    </th>
+                </tr>
+                <tr>
+                  <th scope="col">Tags:</th>
+                  <th scope="col">
+                      {% for tag in dictionary.tags %}
+                          <a href="/?tag={{tag}}" role="button">
+                            <span class="badge bg-secondary">{{tag}}</span>
+                          </a>
+                      {% endfor %}
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="col">Rating:</th>
+                  <th scope="col">
+                      {{dictionary.rating}}
+                      <img src="/assets/icons8-star-half-empty-48.png" alt="rate">
+                      ({{dictionary.rates_count}})
+                  </th>
+                </tr>
+              </tbody>
+           </table>
+        <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+      </div>
+      <div class="card-footer text-muted">
+        {{dictionary.date}}
+      </div>
+    </div>
+</div>
