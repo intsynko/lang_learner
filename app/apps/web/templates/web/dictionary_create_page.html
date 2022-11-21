@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center container  col-md-7">
+<h4 class="mb-3">New dictionary creation</h4>
+<form class="needs-validation" novalidate="">
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="firstName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+      <div class="invalid-feedback">
+        Valid name is required.
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <label for="language_from" class="form-label">Language from</label>
+      <select class="form-select" id="language_from" name="language_from" required="">
+        <option selected value> All languages </option>
+        {% for lang in languages %}
+            <option value="{{lang.code}}">
+                {{lang.name}}
+            </option>
+        {% endfor %}
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid country.
+      </div>
+    </div>
+
+    <div class="col-md-4">
+     <label for="language_to" class="form-label">Language to</label>
+      <select class="form-select" id="language_to" name="language_to" required="">
+        <option selected value> All languages </option>
+        {% for lang in languages %}
+            <option value="{{lang.code}}">
+                {{lang.name}}
+            </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="level" class="form-label">Level</label>
+      <select class="form-select" id="level" name="level" required="">
+        <option selected value> All levels </option>
+        {% for level in levels %}
+            <option value="{{level.name}}">
+                {{level.name}}
+            </option>
+        {% endfor %}
+      </select>
+  </div>
+
+  <div class="col-12">
+    <select name="tag" class="form-select form-select-md" multiple>
+        {% for tag in tags %}
+            <option value="{{tag.name}}" {% if tag.name in q.tags %}selected{% endif %}>
+                {{tag.name}}
+            </option>
+        {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="is_public" name="is_public">
+    <label class="form-check-label" for="is_public">All users can see it</label>
+  </div>
+
+  <hr class="my-4">
+
+  <h4 class="mb-3">Words</h4>
+
+
+  <div class="card">
+    <div class="card-body row g-3">
+      <div class="col-md-3">
+        <label for="word-from" class="form-label">Word from</label>
+        <input type="text" class="form-control" id="word-from" placeholder="" required="">
+        <div class="invalid-feedback">
+          Word from is required
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <label for="word-to" class="form-label">Word to</label>
+        <input type="text" class="form-control" id="word-to" placeholder="" required="">
+        <div class="invalid-feedback">
+          Word to is required
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <hr class="my-4">
+  </div>
+  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+</form>
+</div>
+{% endblock %}

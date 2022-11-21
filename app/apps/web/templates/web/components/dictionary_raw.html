@@ -1,0 +1,20 @@
+<tr class="clickable-row" onclick="window.location='/dictionary/{{dict.id}}/';">
+  <th scope="col">
+      <img src="{{dict.lang_from.icon}}" alt="lang_from">
+      <img src="{{dict.lang_to.icon}}" alt="lang_to">
+      {{dict.lang}}
+  </th>
+    <th scope="col">{{dict.name}}</th>
+  <th scope="col">
+      <span class="badge bg-warning">{{dict.level}}</span>
+  </th>
+    <th scope="col">
+    {% for tag in dict.tags %}
+        <span class="badge bg-secondary">{{tag}}</span>
+    {% endfor %}
+    </th>
+  <th scope="col">
+      {{dict.rating}}
+      <img src="/assets/icons8-star-half-empty-48.png" alt="rate">
+  </th>
+</tr>

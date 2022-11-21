@@ -47,9 +47,13 @@
                 <tr>
                   <th scope="col">Languages:</th>
                     <th scope="col">
-                      <img src="{{dictionary.lang_from}}" alt="lang_from">
-                      <img src="{{dictionary.lang_to}}" alt="lang_to">
-                      <small class="text-muted fw-light">{{dictionary.lang}}</small>
+                        <a href="/?lang={{dictionary.lang_from.code}}" role="button">
+                            <img src="{{dictionary.lang_from.icon}}" alt="lang_from">
+                        </a>
+                        <a href="/?lang={{dictionary.lang_to.code}}" role="button">
+                            <img src="{{dictionary.lang_to.icon}}" alt="lang_to">
+                        </a>
+                        <small class="text-muted fw-light">{{dictionary.lang}}</small>
                     </th>
                 </tr>
                 <tr>

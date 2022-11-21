@@ -1,3 +1,4 @@
+from typing import List
 
 from django.db import models
 from django.db.models import Count, Avg, Q
@@ -51,19 +52,24 @@ class Dictionary(models.Model):
         return cls.queryset_wit_rating().filter(Q(owner=user) | Q(pinned__id=user.id))
 
     @classmethod
-    def get_top(cls, search: str = None, amount: int = 10, lang_from: str = None, lang_to: str = None, level: str = None):
+    def get_top(cls, search: str = None, amount: int = 10, lang: str = None,
+                level: str = None, tag: str = None, tags: List[str] = None, **kwargs):
         queryset = cls.queryset_wit_rating()
 
         if search:
-            queryset = queryset.filter(Q(name__icontains=search) | Q(tag__name__icontains=search))
+            queryset = queryset.filter(Q(name__icontains=search) | Q(tags__name__icontains=search))
 
-        if lang_from:
-            queryset = queryset.filter(lang_from__code=lang_from)
-        if lang_to:
-            queryset = queryset.filter(lang_to__code=lang_to)
+        if lang:
+            queryset = queryset.filter(Q(language_from__code=lang) | Q(language_to__code=lang))
 
         if level:
             queryset = queryset.filter(level__name=level)
+
+        if tag:
+            queryset = queryset.filter(tags__name=tag)
+
+        if tags:
+            queryset = queryset.filter(tags__name__in=tags)
 
         return queryset.order_by("rates_cnt", "average_rate")[:amount]
 
@@ -82,3 +88,14 @@ class Rate(models.Model):
 
     class Meta:
         unique_together = (("user", "dictionary"),)
+
+
+class Words(models.Model):
+    image = models.ImageField()
+    dictionary = models.ForeignKey(Dictionary, verbose_name=_("Dictionary"), on_delete=models.CASCADE, related_name="words")
+    word_from = models.CharField(_("Word from"), max_length=50)
+    word_to = models.CharField(_("Word from"), max_length=50)
+    active = models.BooleanField(default=True)
+    example_1 = models.CharField(_("Example 1"), max_length=255)
+    example_2 = models.CharField(_("Example 2"), max_length=255)
+    frequency = models.SmallIntegerField(_("Frequency"), default=10)

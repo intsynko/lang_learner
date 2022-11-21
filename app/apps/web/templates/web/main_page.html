@@ -17,11 +17,24 @@
         <h1 class="fw-light">Dictionaries from users all over the world</h1>
         <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
 
-        <form class="w-100 me-3" role="search" method="POST" action="/">
-            {% csrf_token %}
+        <form class="w-100 me-3" role="search" method="GET" action="/">
             <div class="input-group mb-3">
               <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
               <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Filters
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  {% include "web/components/filters.html" %}
+                </div>
+              </div>
+
             </div>
         </form>
 
@@ -37,26 +50,7 @@
       </thead>
       <tbody>
         {% for dict in dictionaries%}
-            <tr class="clickable-row" onclick="window.location='/dictionary/{{dict.id}}/';">
-              <th scope="col">
-                  <img src="{{dict.lang_from}}" alt="lang_from">
-                  <img src="{{dict.lang_to}}" alt="lang_to">
-                  {{dict.lang}}
-              </th>
-                <th scope="col">{{dict.name}}</th>
-              <th scope="col">
-                  <span class="badge bg-warning">{{dict.level}}</span>
-              </th>
-                <th scope="col">
-                {% for tag in dict.tags %}
-                    <span class="badge bg-secondary">{{tag}}</span>
-                {% endfor %}
-                </th>
-              <th scope="col">
-                  {{dict.rating}}
-                  <img src="/assets/icons8-star-half-empty-48.png" alt="rate">
-              </th>
-            </tr>
+            {% include "web/components/dictionary_raw.html" %}
         {% endfor %}
         <tr>
       </tbody>
