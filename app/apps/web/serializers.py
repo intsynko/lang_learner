@@ -2,16 +2,19 @@ from rest_framework import serializers
 
 
 class LanguageSerizlizer(serializers.Serializer):
+    id = serializers.IntegerField()
     name = serializers.CharField()
     code = serializers.CharField()
     icon = serializers.ImageField()
 
 
 class LevelSerizlizer(serializers.Serializer):
+    id = serializers.IntegerField()
     name = serializers.CharField()
 
 
 class TagSerizlizer(serializers.Serializer):
+    id = serializers.IntegerField()
     name = serializers.CharField()
 
 

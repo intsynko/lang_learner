@@ -1,0 +1,27 @@
+<div class="card">
+
+    <input name="id" hidden value="{{form.id.value}}">
+
+    <div class="card-body row g-3">
+        Word
+      <div class="col-md-3">
+        <input type="text" name="word_from" class="form-control" placeholder="" required="" value="{{form.word_from.value}}">
+        <div class="invalid-feedback">
+          Word from is required
+        </div>
+      </div>
+
+      <div class="col-md-3">
+          Translate
+        <!--    <label for="word-to" class="form-label">Word to</label>-->
+        <input type="text" name="word_to" class="form-control" placeholder="" required="" value="{{form.word_to.value}}">
+        <div class="invalid-feedback">
+          Word to is required
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <button hx-delete="/word/{{id}}/delete/" hx-target="words" type="button" class="btn-close"></button>
+      </div>
+    </div>
+</div>

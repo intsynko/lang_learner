@@ -39,10 +39,15 @@ class Dictionary(models.Model):
     is_public = models.BooleanField(_("Is public"), default=True)
     tags = models.ManyToManyField(to=Tag, blank=True, verbose_name=_("Tags"), related_name="dicts")
     level = models.ForeignKey(Level, verbose_name=_("Level"), on_delete=models.PROTECT, related_name="dicts")
+    is_active = models.BooleanField(_("Is active"), default=True)
+
+    @classmethod
+    def active(cls):
+        return cls.objects.filter(is_active=True)
 
     @classmethod
     def queryset_wit_rating(cls):
-        return cls.objects.annotate(
+        return cls.active().annotate(
             rates_cnt=Count("rates"),
             average_rate=Avg("rates__amount")
         )
