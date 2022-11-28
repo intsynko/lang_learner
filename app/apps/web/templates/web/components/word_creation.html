@@ -1,0 +1,54 @@
+<div hx-target="this" hx-encoding='multipart/form-data' hx-swap="outerHTML" class="card col-md-4">
+
+    {% if form.image.value %}
+        <img class="card-img-top" src="/media/{{ form.image.value }}">
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+
+        <input name="id" hidden value="{{form.id.value}}">
+        <input name="dictionary" hidden value="{{form.dictionary.value}}">
+
+        <div class="card-body row g-3">
+            <div class="col-md-5">
+              Word
+            <input type="text" name="word_from" class="form-control" placeholder="" required="" value="{{form.word_from.value}}">
+            {{ form.word_from.errors }}
+            </div>
+
+            <div class="col-md-5">
+              Translate
+            <input type="text" name="word_to" class="form-control" placeholder="" required="" value="{{form.word_to.value}}">
+              {{ form.word_to.errors }}
+            </div>
+
+            <div class="col-md-5">
+              Image
+               <input type="file" name="image" accept="image/*">
+            </div>
+
+            <div class="col-md-12">
+                  Example 1
+                <input type="text" name="example_1" class="form-control" placeholder="" required="" value="{{form.example_1.value}}">
+                  {{ form.example_1.errors }}
+            </div>
+
+            <div class="col-md-12">
+                  Example 1
+                <input type="text" name="example_2" class="form-control" placeholder="" required="" value="{{form.example_2.value}}">
+                  {{ form.example_2.errors }}
+            </div>
+
+
+            {% if form.id.value %}
+              <div class="col-md-1">
+                <button hx-post="/word/{{form.id.value}}/delete/" type="button" class="btn-close"></button>
+              </div>
+            {% endif %}
+
+            <div class="col-md-3">
+                <button hx-post="/word/create/" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

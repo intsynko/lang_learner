@@ -83,6 +83,7 @@
                 </tr>
               </tbody>
            </table>
+          <a type="button" class="w-100 btn btn-lg btn-primary" href="/dictionary/{{dictionary.id}}/repeat/">Learning</a>
           {% if dictionary.is_mine %}
             <a type="button" class="w-100 btn btn-lg btn-primary" href="/dictionary/{{dictionary.id}}/update/">Edit</a>
           <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">

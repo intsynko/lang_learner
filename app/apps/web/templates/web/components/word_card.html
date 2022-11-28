@@ -1,0 +1,18 @@
+<div class="card">
+    {% if form.image %}
+        <img class="card-img-top" src="/media/{{ form.image.value }}">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ form.word_to.value }}</h5>
+        <p class="card-text">{{ form.word_from.value }}</p>
+
+        <h6 class="card-title">Examples: </h6>
+        <p class="card-text">{{ form.example_1.value }}</p>
+        <p class="card-text">{{ form.example_2.value }}</p>
+        <form method="POST" action=".">
+            <input hidden id="word-input" name="word">
+            <input hidden id="success-input" name="success">
+            <button type="submit" class="btn btn-primary">Go next</button>
+        </form>
+    </div>
+</div>

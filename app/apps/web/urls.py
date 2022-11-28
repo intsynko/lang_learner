@@ -2,8 +2,10 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from apps.web.views.main import MainPage
-from apps.web.views.auth import  LoginPage
+from apps.web.views.auth import LoginPage
 from apps.web.views import dictionary as dictionary_views
+from apps.web.views import word as word_views
+from apps.web.views import repeat as repeat_views
 
 urlpatterns = [
     path('', MainPage.as_view(), name="main"),
@@ -24,10 +26,11 @@ urlpatterns = [
     path('dictionary/<int:id>/update/', dictionary_views.DictionaryUpdatePage.as_view(), name="dictionary-update"),
     path('dictionary/<int:id>/remove/', dictionary_views.DictionaryRemovePage.as_view(), name="dictionary-remove"),
 
-    path('word/create/', dictionary_views.WordCreatePage.as_view(), name="word-create"),
-    path('word/<int:id>/delete/', dictionary_views.WordDeletePage.as_view(), name="word-delete"),
+    path('word/<int:id>/', word_views.word_template, name="word-form"),
+    path('word/create/', word_views.WordCreatePage.as_view(), name="word-create"),
+    path('word/<int:id>/delete/', word_views.WordDeletePage.as_view(), name="word-delete"),
 
-    path('htmx/dictionary/<int:id>/word/', dictionary_views.word_template, name="word-form"),
+    path('dictionary/<int:id>/repeat/', repeat_views.RepeatPage.as_view(), name="repeat"),
 ]
 
 app_name = "web"
