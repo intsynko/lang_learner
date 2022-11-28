@@ -1,0 +1,71 @@
+
+<div class="container text-center">
+    <div class="card" id="choices">
+            {% if form.word.image %}
+                <img class="card-img-top" src="{{ form.word.image }}">
+            {% endif %}
+        <div id="choices" class="text-center">
+            <h5 class="card-title">{{ form.word.word_to }}</h5>
+
+            <div class="row text-center">
+                <div class="btn-group" role="group" aria-label="Basic example" id="words-container">
+                    {% for sym in form.symbols %}
+                        <button type="button" class="btn">_</button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="buttons-container">
+                {% for sym in form.symbols %}
+                    <button type="button" onclick="check(this, '{{ sym }}')"  class="btn btn-secondary mt-2 mb-2">{{ sym }}</button>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <div hidden id="word-card">
+        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+    </div>
+</div>
+
+<script>
+
+let word = "{{ form.word.word_from }}"
+let current = ""
+
+function check(btn, sym){
+    if (word[current.length] == sym){
+        {#new Audio("/assets/voices/success.mp3").play();#}
+        current = current + sym;
+        let container = document.getElementById("words-container")
+        container.insertBefore(btn, container.children[current.length-1]);
+        container.removeChild(container.children[container.children.length-1]);
+        if (current.length < word.length) {
+            return;
+        }
+
+    } else {
+        new Audio("/assets/voices/fail.mp3").play();
+        return;
+    }
+
+    new Audio("/assets/voices/success.mp3").play();
+
+    document.getElementById("choices").hidden = true;
+    document.getElementById("word-card").hidden = false;
+
+    document.getElementById("word-input").value = {{ form.word.id }};
+    document.getElementById("success-input").value = true;
+
+    let url = "";
+    if (success) {
+        url = "/assets/voices/success.mp3"
+    }
+    else {
+        url = "/assets/voices/fail.mp3"
+    }
+    const audio = new Audio(url);
+    audio.play();
+}
+</script>

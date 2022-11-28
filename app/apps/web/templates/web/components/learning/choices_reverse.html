@@ -27,5 +27,13 @@ function show(id, success){
 
     document.getElementById("word-input").value = id;
     document.getElementById("success-input").value = success;
+
+
+    if (success) {
+        new Audio("/assets/voices/success.mp3").play();
+    }
+    else {
+        new Audio("/assets/voices/fail.mp3").play();
+    }
 }
 </script>

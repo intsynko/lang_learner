@@ -10,6 +10,8 @@
             {% include 'web/components/learning/choices.html' with form=form %}
         {% elif form.type == 'choices_reverse' %}
             {% include 'web/components/learning/choices_reverse.html' with form=form %}
+        {% elif form.type == 'word_build' %}
+            {% include 'web/components/learning/word_build.html' with form=form %}
         {% elif form.type == 'finish' %}
             {% include 'web/components/learning/finish.html' with form=form %}
         {% endif %}

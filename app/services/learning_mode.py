@@ -23,7 +23,8 @@ class Answer:
 class LearningModeService:
     CHOICES = 'choices'
     CHOICES_REVERSE = 'choices_reverse'
-    TYPES = [CHOICES, CHOICES_REVERSE]
+    WORD_BUILD = 'word_build'
+    TYPES = [CHOICES, CHOICES_REVERSE, WORD_BUILD]
 
     def __init__(self, timeout: int = settings.LEARNER_SESSION_TIMEOUT):
         self.default_timeout = timeout
@@ -55,7 +56,7 @@ class LearningModeService:
     def next(self, request, session: str, answer: Answer = None):
         context = cache.get(session)
         context = json.loads(context)
-        if answer:
+        if answer and not context['words'][answer.word_id]['progress'][answer.type]:
             context['words'][answer.word_id]['progress'][answer.type] = answer.success
             if answer.success:
                 context['answered'] += 1
@@ -75,6 +76,9 @@ class LearningModeService:
         words = [word for word in context['words'].values() if not all(word['progress'].values())]
         words = words or list(context['words'].values())
         next_word = random.choice(words)
+        default_form = {
+            "progress": round(context['answered'] / context['answers_count'] * 100),
+        }
         if not next_word['progress'][self.CHOICES]:
             choices = [*[word['word_to']
                          for word in context['words'].values()
@@ -82,7 +86,7 @@ class LearningModeService:
                        next_word['word_to']]
             random.shuffle(choices)
             return {
-                "progress": round(context['answered'] / context['answers_count'] * 100),
+                **default_form,
                 "type": self.CHOICES,
                 "word": next_word,
                 "choices": choices
@@ -94,8 +98,17 @@ class LearningModeService:
                        next_word['word_from']]
             random.shuffle(choices)
             return {
-                "progress": round(context['answered'] / context['answers_count'] * 100),
+                **default_form,
                 "type": self.CHOICES_REVERSE,
                 "word": next_word,
                 "choices": choices
+            }
+        if not next_word['progress'][self.WORD_BUILD]:
+            symbols = list(next_word['word_from'])
+            random.shuffle(symbols)
+            return {
+                **default_form,
+                "type": self.WORD_BUILD,
+                "word": next_word,
+                "symbols": symbols,
             }
