@@ -1,0 +1,20 @@
+<div class="container text-center card">
+
+    <img class="card-img-top" src="/assets/congrats.png">
+
+    <div class="card-body">
+        <h5 class="card-title">You have finished! Congrats! 🎉 </h5>
+        <p class="card-text">{{ form.word_from }}</p>
+
+        <div class="col">
+            <div class="row mb-2">
+                <a type="submit" href="/" class="btn btn-primary">Go to main page</a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="row mb-2">
+                    <a type="submit" href="/dictionary/" class="btn btn-primary">Go to my dicts</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -10,7 +10,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Local apps
+    'apps.web',
+
     'apps.account',
     'apps.dictionary',
-    'apps.web',
+    'apps.achievements',
 ]

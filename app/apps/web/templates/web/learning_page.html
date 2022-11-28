@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="progress mb-4">
+  <div class="progress-bar" style="width: {{ form.progress }}%" role="progressbar" aria-valuenow="{{ form.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
         {% if form.type == 'choices' %}
-            {% include 'web/components/choices.html' with form=form %}
+            {% include 'web/components/learning/choices.html' with form=form %}
+        {% elif form.type == 'finish' %}
+            {% include 'web/components/learning/finish.html' with form=form %}
         {% endif %}
 </div>
 {% endblock %}

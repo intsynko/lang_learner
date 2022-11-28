@@ -3,28 +3,28 @@
       <div class="card-header {% if dictionary.is_mine %}text-bg-secondary{% endif%}">
           <h2>
           {{dictionary.name}}
-          {% if not dictionary.is_mine %}
-              {% if not dictionary.pinned and user.is_authenticated %}
-              <form action="pin/" method="POST">
-                  {% csrf_token %}
-                  <input name="path" hidden value="{{ request.path }}">
-                  <span style="float:right;">
-                      <button type="submit" class="btn btn-default">
-                        <img src="/assets/icons8-pin-30.png" alt="pin">
-                      </button>
-                  </span>
-              </form>
-              {% else%}
-              <form action="{{dictionary.id}}/unpin/" method="POST">
-                  {% csrf_token %}
-                  <input name="path" hidden value="{{ request.path }}">
-                  <span style="float:right;">
-                      <button type="submit" class="btn btn-default">
-                        <img src="/assets/icons8-pin-remove-30.png" alt="pin">
-                      </button>
-                  </span>
-              </form>
-              {% endif %}
+          {% if not dictionary.is_mine and user.is_authenticated%}
+                  {% if not dictionary.pinned %}
+                  <form action="pin/" method="POST">
+                      {% csrf_token %}
+                      <input name="path" hidden value="{{ request.path }}">
+                      <span style="float:right;">
+                          <button type="submit" class="btn btn-default">
+                            <img src="/assets/icons8-pin-30.png" alt="pin">
+                          </button>
+                      </span>
+                  </form>
+                  {% else%}
+                      <form action="/dictionary/{{dictionary.id}}/unpin/" method="POST">
+                          {% csrf_token %}
+                          <input name="path" hidden value="{{ request.path }}">
+                          <span style="float:right;">
+                              <button type="submit" class="btn btn-default">
+                                <img src="/assets/icons8-pin-remove-30.png" alt="pin">
+                              </button>
+                          </span>
+                      </form>
+                  {% endif %}
           {% endif %}
           </h2>
       </div>
@@ -83,13 +83,13 @@
                 </tr>
               </tbody>
            </table>
-          <a type="button" class="w-100 btn btn-lg btn-primary" href="/dictionary/{{dictionary.id}}/repeat/">Learning</a>
+          <a type="button" class="w-100 btn btn-lg btn-primary mb-2" href="/dictionary/{{dictionary.id}}/repeat/">Learning</a>
           {% if dictionary.is_mine %}
-            <a type="button" class="w-100 btn btn-lg btn-primary" href="/dictionary/{{dictionary.id}}/update/">Edit</a>
+            <a type="button" class="w-100 btn btn-lg btn-primary mb-2" href="/dictionary/{{dictionary.id}}/update/">Edit</a>
           <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">
               {% csrf_token %}
               <input name="path" hidden value="{{ request.path }}">
-              <input type="submit" class="w-100 btn btn-lg btn-danger" href="/dictionary/{{dictionary.id}}/remove/" value="Remove">
+              <input type="submit" class="w-100 btn btn-lg btn-danger mb-2" href="/dictionary/{{dictionary.id}}/remove/" value="Remove">
           </form>
           {% endif %}
       </div>

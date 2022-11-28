@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.views.decorators.cache import cache_page
 
 from apps.web.views.main import MainPage
 from apps.web.views.auth import LoginPage
@@ -30,7 +32,8 @@ urlpatterns = [
     path('word/create/', word_views.WordCreatePage.as_view(), name="word-create"),
     path('word/<int:id>/delete/', word_views.WordDeletePage.as_view(), name="word-delete"),
 
-    path('dictionary/<int:id>/repeat/', repeat_views.RepeatPage.as_view(), name="repeat"),
+    path('dictionary/<int:id>/repeat/', repeat_views.repeat, name="repeat"),
+    path('dictionary/<int:id>/repeat/<str:session>/', repeat_views.RepeatPage.as_view(), name="repeat-page"),
 ]
 
 app_name = "web"

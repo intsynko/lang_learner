@@ -1,31 +1,25 @@
-from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseForbidden, HttpResponse
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from apps.dictionary import models as dict_models
-from apps.web.forms import WordForm
+from services.learning_mode import LearningModeService, Answer
 
 
-def word_template(reqeust, id):
-    return render(reqeust, "web/components/word_creation.html", context={"form": WordForm({"dictionary": id, "id": 0})})
+learning_service = LearningModeService()
+
+
+def repeat(reqeust, id):
+    session = learning_service.init_session(reqeust, id)
+    return redirect(reqeust.path + str(session) + "/")
 
 
 class RepeatPage(TemplateView):
+    def get(self, request, *args, id, session, **kwargs):
+        form = learning_service.next(request, session)
+        return render(request, "web/learning_page.html", context={"form":form})
 
-    def get(self, request, *args, id, **kwargs):
-        dict = dict_models.Dictionary.objects.filter(id=id).first()
-        words = dict.words.all()
-        word = words[0]
-        return render(request, "web/learning_page.html", context={"form": {
-            "type": "choices",
-            "word": WordForm(instance=word),
-            "choices": [word_.word_to for word_ in [*words.exclude(id=word.id)[:3], word]],
-        }})
-
-    def post(self, request, *args, **kwargs):
-        word = dict_models.Words.objects.filter(id=request.POST.get('word')).first()
-        success = request.POST.get('success') == 'true'
-        # continue
+    def post(self, request, *args, id, session, **kwargs):
+        form = learning_service.next(request, session, Answer(request.POST.get('word'),
+                                                              request.POST.get('type'),
+                                                              request.POST.get('success') == 'true'
+                                                              ))
+        return render(request, "web/learning_page.html", context={"form": form})

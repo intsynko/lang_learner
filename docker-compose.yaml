@@ -9,3 +9,10 @@ services:
       - ./db/backup:/backup
     ports:
       - "5432:5432"
+  redis:
+    image: redis:6.2.2-alpine
+    restart: always
+    volumes:
+      - ./redis/data:/data
+    ports:
+      - "6379:6379"
