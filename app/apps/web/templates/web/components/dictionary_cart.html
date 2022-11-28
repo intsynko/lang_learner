@@ -44,6 +44,12 @@
                     </th>
                 </tr>
                 <tr>
+                    <th scope="col">Words:</th>
+                    <th scope="col">
+                        {{ dictionary.count }}
+                    </th>
+                </tr>
+                <tr>
                   <th scope="col">Level:</th>
                   <th scope="col">
                       <a href="/?level={{dictionary.level}}" role="button">
@@ -80,6 +86,16 @@
                       <img src="/assets/icons8-star-half-empty-48.png" alt="rate">
                       ({{dictionary.rates_count}})
                   </th>
+                </tr>
+                <tr>
+                    <th scope="col">Last attempt:</th>
+                    <th scope="col">
+                        {% if dictionary.last_date %}
+                            {{ dictionary.last_date }}
+                        {% else %}
+                            You have never learned it
+                        {% endif %}
+                    </th>
                 </tr>
               </tbody>
            </table>

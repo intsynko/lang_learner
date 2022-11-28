@@ -41,9 +41,18 @@ class DictionaryDetailSerializer(DictionarySerializer):
     date = serializers.DateField(source='date_created')
     pinned = serializers.SerializerMethodField()
     is_mine = serializers.SerializerMethodField()
+    count = serializers.SerializerMethodField()
+    last_date = serializers.SerializerMethodField()
 
     def get_pinned(self, obj):
         return obj.pinned.filter(id=self.context['request'].user.id).exists()
 
     def get_is_mine(self, obj):
         return obj.owner == self.context['request'].user
+
+    def get_count(self, obj):
+        return obj.words.count()
+
+    def get_last_date(self, obj):
+        attempt = obj.attempts.order_by("-date").first()
+        return attempt and attempt.date

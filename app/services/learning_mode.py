@@ -21,7 +21,9 @@ class Answer:
 
 
 class LearningModeService:
-    TYPES = ['choices', ]
+    CHOICES = 'choices'
+    CHOICES_REVERSE = 'choices_reverse'
+    TYPES = [CHOICES, CHOICES_REVERSE]
 
     def __init__(self, timeout: int = settings.LEARNER_SESSION_TIMEOUT):
         self.default_timeout = timeout
@@ -55,7 +57,8 @@ class LearningModeService:
         context = json.loads(context)
         if answer:
             context['words'][answer.word_id]['progress'][answer.type] = answer.success
-            context['answered'] += 1
+            if answer.success:
+                context['answered'] += 1
             cache.set(session, json.dumps(context), timeout=self.default_timeout)
         if context['answered'] >= context['answers_count']:
             user = request.user.is_authenticated and request.user or None
@@ -72,15 +75,27 @@ class LearningModeService:
         words = [word for word in context['words'].values() if not all(word['progress'].values())]
         words = words or list(context['words'].values())
         next_word = random.choice(words)
-        # if not next_word['progress']['choices']:
-        choices = [*[word['word_to']
-                     for word in context['words'].values()
-                     if word['id'] != next_word['id']][:3],
-                   next_word['word_to']]
-        random.shuffle(choices)
-        return {
-            "progress": round(context['answered'] / context['answers_count'] * 100),
-            "type": "choices",
-            "word": next_word,
-            "choices": choices
-        }
+        if not next_word['progress'][self.CHOICES]:
+            choices = [*[word['word_to']
+                         for word in context['words'].values()
+                         if word['id'] != next_word['id']][:3],
+                       next_word['word_to']]
+            random.shuffle(choices)
+            return {
+                "progress": round(context['answered'] / context['answers_count'] * 100),
+                "type": self.CHOICES,
+                "word": next_word,
+                "choices": choices
+            }
+        elif not next_word['progress'][self.CHOICES_REVERSE]:
+            choices = [*[word['word_from']
+                         for word in context['words'].values()
+                         if word['id'] != next_word['id']][:3],
+                       next_word['word_from']]
+            random.shuffle(choices)
+            return {
+                "progress": round(context['answered'] / context['answers_count'] * 100),
+                "type": self.CHOICES_REVERSE,
+                "word": next_word,
+                "choices": choices
+            }
