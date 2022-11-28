@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseForbidden
+from django.http import Http404, HttpResponseForbidden, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
@@ -77,10 +77,6 @@ class DictionaryPage(TemplateView):
         return context
 
 
-def word_template(reqeust):
-    return render(reqeust, "web/components/word.html", context={"form": WordForm()})
-
-
 class DictionaryCreatePage(TemplateView):
     template_name = "web/dictionary_create_page.html"
 
@@ -124,7 +120,7 @@ class DictionaryUpdatePage(DictionaryCreatePage):
             raise Http404()
         context = self.get_context_data(**kwargs, request=request)
         context['form'] = DictionaryForm(instance=dict)
-        context['dict_id'] = dict.id
+        context['words'] = [WordForm(instance=word) for word in dict.words.filter(active=True)]
         return self.render_to_response(context)
 
 
@@ -142,3 +138,39 @@ class DictionaryRemovePage(DictionaryCreatePage):
         dict.is_active = False
         dict.save()
         return redirect(request.POST.get("path") or "/")
+
+
+# Words
+def word_template(reqeust, id):
+    return render(reqeust, "web/components/word.html", context={"form": WordForm({"dictionary": id, "id": 0})})
+
+
+class WordCreatePage(TemplateView):
+
+    @method_decorator(csrf_protect)
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        instance = dict_models.Words.objects.filter(id=request.POST.get('id')).first()
+        if instance and instance.dictionary.owner != request.user:
+            return HttpResponseForbidden()
+        form = WordForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            #return render(request, "web/components/word.html", context={"form": form})
+        return render(request, "web/components/word.html", context={"form": form})
+
+
+class WordDeletePage(TemplateView):
+
+    @method_decorator(csrf_protect)
+    @method_decorator(login_required)
+    def post(self, request, *args, id, **kwargs):
+        try:
+            word = dict_models.Words.objects.get(id=id)
+        except dict_models.Words.DoesNotExist:
+            raise Http404()
+        if word.dictionary.owner != request.user:
+            return HttpResponseForbidden()
+        word.active = False
+        word.save()
+        return HttpResponse()

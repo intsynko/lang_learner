@@ -2,11 +2,15 @@
 
 {% block content %}
 <div class="text-center container  col-md-7">
-<h4 class="mb-3">New dictionary creation</h4>
+{% if form.id.value %}
+    <h4 class="mb-3">Edit {{ form.name.value }}</h4>
+{% else %}
+    <h4 class="mb-3">New dictionary creation</h4>
+{% endif %}
 <form class="needs-validation" method="POST" action=".">
   {% csrf_token %}
 
-  <input hidden name="id" value="{{dict_id}}">
+  <input hidden name="id" value="{{form.id.value}}">
   <div class="row g-3">
     <div class="col-12">
       <label for="firstName" class="form-label">Name</label>
@@ -88,11 +92,20 @@
   </div>
   <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
 </form>
+    {% csrf_token %}
 
-    {% if dict_id %}
+    {% if form.id.value %}
         <h4 class="mb-3">Words</h4>
-        <div class="container" id="words"></div>
-        <button class="btn btn-primary col-5" type="button" hx-get="{% url 'web:word-form' %}" hx-swap="beforeend" hx-target="#words">
+        <div class="container" id="words">
+            {% for word in words %}
+                {% include 'web/components/word.html' with form=word csrf_token=csrf_token %}
+            {% endfor %}
+        </div>
+        <hr class="my-4">
+
+        <button class="btn btn-primary col-5" type="button"
+                hx-get="{% url 'web:word-form' id=form.id.value %}"
+                hx-swap="beforeend" hx-target="#words">
             Add
         </button>
         <hr class="my-4">

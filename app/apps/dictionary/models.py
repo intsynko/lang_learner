@@ -96,11 +96,11 @@ class Rate(models.Model):
 
 
 class Words(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
     dictionary = models.ForeignKey(Dictionary, verbose_name=_("Dictionary"), on_delete=models.CASCADE, related_name="words")
     word_from = models.CharField(_("Word from"), max_length=50)
     word_to = models.CharField(_("Word from"), max_length=50)
     active = models.BooleanField(default=True)
-    example_1 = models.CharField(_("Example 1"), max_length=255)
-    example_2 = models.CharField(_("Example 2"), max_length=255)
+    example_1 = models.CharField(_("Example 1"), max_length=255, null=True, blank=True)
+    example_2 = models.CharField(_("Example 2"), max_length=255, null=True, blank=True)
     frequency = models.SmallIntegerField(_("Frequency"), default=10)

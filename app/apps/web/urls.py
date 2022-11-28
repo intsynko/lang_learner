@@ -24,7 +24,10 @@ urlpatterns = [
     path('dictionary/<int:id>/update/', dictionary_views.DictionaryUpdatePage.as_view(), name="dictionary-update"),
     path('dictionary/<int:id>/remove/', dictionary_views.DictionaryRemovePage.as_view(), name="dictionary-remove"),
 
-    path('htmx/dictionary/word/', dictionary_views.word_template, name="word-form"),
+    path('word/create/', dictionary_views.WordCreatePage.as_view(), name="word-create"),
+    path('word/<int:id>/delete/', dictionary_views.WordDeletePage.as_view(), name="word-delete"),
+
+    path('htmx/dictionary/<int:id>/word/', dictionary_views.word_template, name="word-form"),
 ]
 
 app_name = "web"
