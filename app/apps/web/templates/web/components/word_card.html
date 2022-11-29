@@ -1,0 +1,13 @@
+<div class="card">
+    {% if form.image.value %}
+        <img class="card-img-top" src="/media/{{ form.image.value }}">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ form.word_to.value }}</h5>
+        <p class="card-text" id="word-form">{{ form.word_from.value }}</p>
+
+        <h6 class="card-title">Examples: </h6>
+        <p class="card-text">{{ form.example_1.value }}</p>
+        <p class="card-text">{{ form.example_2.value }}</p>
+    </div>
+</div>
