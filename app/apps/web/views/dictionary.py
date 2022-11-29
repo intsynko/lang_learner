@@ -21,7 +21,7 @@ class DictionaryDetailPage(TemplateView):
         except dict_models.Dictionary.DoesNotExist:
             raise Http404()
         context['dictionary'] = DictionaryDetailSerializer(instance=dict, context={"request": kwargs['request']}).data
-        context['words'] = [WordForm(instance=word) for word in dict.words.all()]
+        context['words'] = [WordForm(instance=word) for word in dict.words.filter(active=True)]
         return context
 
     def get(self, request, *args, **kwargs):
@@ -114,6 +114,7 @@ class DictionaryCreatePage(TemplateView):
 
         context = self.get_context_data(**kwargs, request=request)
         context["form"] = form
+        context["words"] = [WordForm(instance=word) for word in form.instance.words.filter(active=True)]
         return render(request, self.template_name, context)
 
 

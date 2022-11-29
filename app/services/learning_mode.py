@@ -32,7 +32,8 @@ class LearningModeService:
 
     def init_session(self, request, dict_id):
         session = uuid.uuid4()
-        words = dict_models.Words.objects.filter(dictionary__id=dict_id)
+        words = dict_models.Words.objects.filter(dictionary__id=dict_id, active=True)
+        dict_ = dict_models.Dictionary.objects.get(pk=dict_id)
         init_data = {
             'user_id': request.user.is_authenticated and request.user.id or None,
             'dict_id': dict_id,
@@ -49,7 +50,7 @@ class LearningModeService:
                 for word in words
             },
             'answered': 0,
-            'answers_count': len(words) * 2
+            'answers_count': dict_.session_count or (len(words) * 2)
         }
         cache.set(str(session), json.dumps(init_data), timeout=self.default_timeout)
         return session

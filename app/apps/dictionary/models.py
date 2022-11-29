@@ -40,6 +40,7 @@ class Dictionary(models.Model):
     tags = models.ManyToManyField(to=Tag, blank=True, verbose_name=_("Tags"), related_name="dicts")
     level = models.ForeignKey(Level, verbose_name=_("Level"), on_delete=models.PROTECT, related_name="dicts")
     is_active = models.BooleanField(_("Is active"), default=True)
+    session_count = models.IntegerField(_("Session count"), default=0)
 
     @classmethod
     def active(cls):

@@ -9,7 +9,8 @@ class DictionaryForm(forms.ModelForm):
 
     class Meta:
         model = dict_models.Dictionary
-        fields = ("id", "name", "language_from", "language_to", "level", "tags", "is_public")
+        fields = ("id", "name", "language_from", "language_to", "level", "tags",
+                  "is_public", "session_count")
 
 
 class WordForm(forms.ModelForm):
