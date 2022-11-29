@@ -24,7 +24,8 @@ class LearningModeService:
     CHOICES = 'choices'
     CHOICES_REVERSE = 'choices_reverse'
     WORD_BUILD = 'word_build'
-    TYPES = [CHOICES, CHOICES_REVERSE, WORD_BUILD]
+    WORD_WRITE = 'word_write'
+    TYPES = [CHOICES, CHOICES_REVERSE, WORD_BUILD, WORD_WRITE]
 
     def __init__(self, timeout: int = settings.LEARNER_SESSION_TIMEOUT):
         self.default_timeout = timeout
@@ -111,4 +112,10 @@ class LearningModeService:
                 "type": self.WORD_BUILD,
                 "word": next_word,
                 "symbols": symbols,
+            }
+        if not next_word['progress'][self.WORD_WRITE]:
+            return {
+                **default_form,
+                "type": self.WORD_WRITE,
+                "word": next_word,
             }

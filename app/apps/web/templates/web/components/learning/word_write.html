@@ -1,0 +1,46 @@
+
+<div class="container text-center">
+    <div class="card" id="choices">
+            {% if form.word.image %}
+                <img class="card-img-top" src="{{ form.word.image }}">
+            {% endif %}
+        <div id="choices" class="card-body">
+            <h5 class="card-title">{{ form.word.word_to }}</h5>
+
+            <div class="col">
+               <input name="result" id="result" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            <button onclick="check()" type="button" class="btn btn-primary">Check</button>
+        </div>
+    </div>
+
+    <div hidden id="word-card">
+        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+    </div>
+</div>
+
+<script>
+
+let word = "{{ form.word.word_from }}"
+
+function check(btn, sym){
+    let result = document.getElementById("result")
+    let success = result.value === word;
+
+    document.getElementById("choices").hidden = true;
+    document.getElementById("word-card").hidden = false;
+
+    document.getElementById("word-input").value = {{ form.word.id }};
+    document.getElementById("success-input").value = success;
+
+    if (success) {
+        new Audio("/assets/voices/success.mp3").play();
+    }
+    else {
+        document.getElementById("word-form").innerHTML = result.value.strike() + " " + word;
+        new Audio("/assets/voices/fail.mp3").play();
+    }
+}
+</script>
