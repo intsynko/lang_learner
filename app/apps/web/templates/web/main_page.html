@@ -11,14 +11,15 @@
 }
 </style>
 
-    <div class="text-center container">
-        <div class="row">
+    <div class="container">
+        <div class="row text-center">
             {% if user.is_authenticated %}
-                <div class="container row mx-auto">
-                    <h1 class="fw-light">Hello, {{ user.username }}</h1>
-                    <p class="card-text">Last month progress: </p>
-                    {% for progress_ in progress %}
-                        <div class="card mb-2" style="width: 18rem;">
+                <h1 class="fw-light">Hello, {{ user.username }}</h1>
+                <p class="card-text">Last month progress: </p>
+
+                {% for progress_ in progress %}
+                    <div class="col">
+                        <div class="card mb-2">
                           <div class="card-body">
                             <h5 class="card-title">{{ progress_.dictionary__name }}</h5>
                             <p class="card-text">You have learned {{ progress_.amount }} times for last month </p>
@@ -28,18 +29,19 @@
                             <a href="/dictionary/{{ progress_.dictionary_id }}/" class="btn btn-primary">Learn it</a>
                           </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                {% endfor %}
 
-                    <h1 class="fw-light">Searching</h1>
-                    {% include 'web/components/searching.html' %}
-                </div>
+
+                <h1 class="fw-light">Searching</h1>
+                {% include 'web/components/searching.html' %}
             {% else %}
-                <div class="col-lg-6 col-md-8 mx-auto">
+                <div>
                     <h1 class="fw-light">Dictionaries from users all over the world</h1>
                     <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
-
                     {% include 'web/components/searching.html' %}
                 </div>
+
             {% endif %}
         </div>
     </div>

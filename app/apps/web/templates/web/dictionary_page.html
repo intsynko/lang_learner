@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+<div class="container">
+    <div class="row">
         {% for dictionary in dictionaries %}
-            <div class="col">
+            <div class="col mb-4 text-center">
                 {% include "web/components/dictionary_cart.html" %}
             </div>
         {% endfor %}
-
+    </div>
 </div>
 {% endblock %}
