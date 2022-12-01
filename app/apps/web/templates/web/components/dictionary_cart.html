@@ -30,32 +30,34 @@
       {% endif %}
   </div>
   <div class="card-body">
-        <a href="/?level={{dictionary.level}}" role="button">
-            <span class="badge bg-warning ml-2">{{dictionary.level}}</span>
+        <a href="/?level={{dictionary.level}}" class="badge bg-warning">
+            {{dictionary.level}}
         </a>
-        <span class="badge bg-info">{{ dictionary.count }} Words</span>
+{#        <span class="badge bg-info">{{ dictionary.count }} Words</span>#}
         {% for tag in dictionary.tags %}
-          <a href="/?tag={{tag}}" role="button" class="pr-2">
-            <span class="badge bg-secondary">{{tag}}</span>
+          <a href="/?tag={{tag}}" role="button" class="badge bg-secondary">
+            {{tag}}
           </a>
         {% endfor %}
 
     <hr class="my-4">
     <div class="container">
       <div class="row">
-        <div class="col-sm">
-          <a type="button" class="w-100 btn btn-lg btn-primary mb-2" href="/dictionary/{{dictionary.id}}/repeat/">Learning</a>
+        <div class="col-md-6">
+          <a type="button" class="btn btn-primary" href="/dictionary/{{dictionary.id}}/repeat/">
+              Learning <span class="badge bg-dark">{{ dictionary.count }} words</span>
+          </a>
         </div>
         {% if dictionary.is_mine %}
-            <div class="col-sm">
-              <a type="button" class="w-100 btn btn-lg btn-primary mb-2" href="/dictionary/{{dictionary.id}}/update/">Edit</a>
+            <div class="col-md-2">
+              <a type="button" class="btn btn-warning" href="/dictionary/{{dictionary.id}}/update/">Edit</a>
             </div>
-             <div class="col-sm">
+             <div class="col-md-3">
           <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">
               {% csrf_token %}
               <input name="path" hidden value="{{ request.path }}">
 
-                <input type="submit" class="w-100 btn btn-lg btn-danger mb-2" href="/dictionary/{{dictionary.id}}/remove/" value="Remove">
+                <input type="submit" class="btn btn-danger" href="/dictionary/{{dictionary.id}}/remove/" value="Remove">
 
           </form>
             </div>
