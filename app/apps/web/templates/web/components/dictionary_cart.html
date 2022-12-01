@@ -1,46 +1,42 @@
 
 <div class="card rounded-3 shadow-sm" {% if limited %}style="width: 400px; min-width: 300px; margin: auto"{% endif %}>
-  <div class="card-header d-flex align-items-baseline">
-
-      <a href="/?lang={{dictionary.lang_from.code}}" role="button">
-        <img src="{{dictionary.lang_from.icon}}" alt="lang_from" style="width: 30px; height: 30px; margin-top: -10px">
-      </a>
-      <h2 class="pl-2">{{dictionary.name}}</h2>
-
-      {% if user.is_authenticated %}
-          {% if dictionary.is_mine %}
-              <a type="button" class="btn btn-default" href="/dictionary/{{dictionary.id}}/update/" style="position: absolute; top: 10px; right: 50px;">
-                <img src="/assets/icons8-pencil-30.png" alt="pin">
-              </a>
-              <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">
-                {% csrf_token %}
-                  <input name="path" hidden value="{{ request.path }}">
-                  <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
-                    <img src="/assets/icons8-remove-30.png" alt="pin">
-                  </button>
-
-              </form>
-          {% elif not dictionary.pinned %}
-              <form action="pin/" method="POST">
-                  {% csrf_token %}
-                  <input name="path" hidden value="{{ request.path }}">
-                  <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
-                    <img src="/assets/icons8-pin-30.png" alt="pin">
-                  </button>
-              </form>
-          {% else%}
-              <form action="/dictionary/{{dictionary.id}}/unpin/" method="POST">
-                  {% csrf_token %}
-                  <input name="path" hidden value="{{ request.path }}">
-                  <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
-                    <img src="/assets/icons8-pin-remove-30.png" alt="pin">
-                  </button>
-              </form>
-          {% endif %}
-      {% endif %}
+    <div class="card-header d-flex align-items-baseline">
+        <a href="/?lang={{dictionary.lang_from.code}}" role="button">
+            <img src="{{dictionary.lang_from.icon}}" alt="lang_from" style="width: 30px; height: 30px; margin-top: -10px">
+        </a>
+        <h2 class="pl-2">{{dictionary.name}}</h2>
+        {% if user.is_authenticated %}
+            {% if dictionary.is_mine %}
+                <a type="button" class="btn btn-default" href="/dictionary/{{dictionary.id}}/update/" style="position: absolute; top: 10px; right: 50px;">
+                    <img src="/assets/icons8-pencil-30.png" alt="pin">
+                </a>
+                <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">
+                    {% csrf_token %}
+                    <input name="path" hidden value="{{ request.path }}">
+                    <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
+                        <img src="/assets/icons8-remove-30.png" alt="pin">
+                    </button>
+                </form>
+            {% elif not dictionary.pinned %}
+                <form action="pin/" method="POST">
+                    {% csrf_token %}
+                    <input name="path" hidden value="{{ request.path }}">
+                    <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
+                        <img src="/assets/icons8-pin-30.png" alt="pin">
+                    </button>
+                </form>
+            {% else%}
+                <form action="/dictionary/{{dictionary.id}}/unpin/" method="POST">
+                    {% csrf_token %}
+                    <input name="path" hidden value="{{ request.path }}">
+                    <button type="submit" class="btn btn-default" style="position: absolute; top: 10px; right: 10px;">
+                        <img src="/assets/icons8-pin-remove-30.png" alt="pin">
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
   </div>
-  <div class="card-body">
-
+    <div class="card-body">
         <a href="/?level={{dictionary.level}}" class="badge bg-warning">
             {{dictionary.level}}
         </a>
@@ -60,43 +56,27 @@
             </div>
         </div>
 
-    <hr class="my-4">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <a type="button" class="btn btn-primary" href="/dictionary/{{dictionary.id}}/repeat/">
-              Learning <span class="badge bg-dark">{{ dictionary.count }} words</span>
-          </a>
+        <hr class="my-4">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <a type="button" class="btn btn-primary" href="/dictionary/{{dictionary.id}}/repeat/">
+                  Learning <span class="badge bg-dark">{{ dictionary.count }} words</span>
+              </a>
+            </div>
+          </div>
         </div>
-{#        {% if dictionary.is_mine %}#}
-{#            <div class="col-md-2">#}
-{#              <a type="button" class="btn btn-warning" href="/dictionary/{{dictionary.id}}/update/">Edit</a>#}
-{#            </div>#}
-{#             <div class="col-md-3">#}
-{#          <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">#}
-{#              {% csrf_token %}#}
-{#              <input name="path" hidden value="{{ request.path }}">#}
-{##}
-{#              <input type="submit" class="btn btn-danger" href="/dictionary/{{dictionary.id}}/remove/" value="Remove">#}
-{##}
-{#          </form>#}
-{#            </div>#}
-{#        {% endif %}#}
-      </div>
+
     </div>
 
-
-  </div>
-  <div class="card-footer text-muted">
+    <div class="card-footer text-muted">
         Created
         {{ dictionary.date }}
-{#        {% if not dictionary.is_mine %}#}
         by
         <a href="/?owner={{dictionary.owner}}">{{dictionary.owner}}</a>
-{#        {% endif %}#}
 
         {{dictionary.rating}}
         <img src="/assets/icons8-star-half-empty-48.png" alt="rate" style="width: 30px; height: 30px">
         ({{dictionary.rates_count}})
-  </div>
+    </div>
 </div>
