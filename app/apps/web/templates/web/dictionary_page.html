@@ -5,7 +5,7 @@
     <div class="row">
         {% for dictionary in dictionaries %}
             <div class="col mb-4 text-center">
-                {% include "web/components/dictionary_cart.html" %}
+                {% include "web/components/dictionary_cart.html" with limited=True %}
             </div>
         {% endfor %}
     </div>
