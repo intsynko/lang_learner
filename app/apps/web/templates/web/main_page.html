@@ -15,8 +15,12 @@
         <div class="row text-center">
             {% if user.is_authenticated %}
                 <h1 class="fw-light">Hello, {{ user.username }}</h1>
-                <p class="card-text">Last week progress: </p>
-                {% include 'web/components/progress_container.html' with progress=progress %}
+                {% if progress %}
+                    <p class="card-text">Last week progress: </p>
+                    {% include 'web/components/progress_container.html' with progress=progress %}
+                {% else %}
+                     <p class="card-text">Here you will see your progress</p>
+                {% endif %}
 
                 <h1 class="fw-light">Searching</h1>
                 {% include 'web/components/searching.html' %}
