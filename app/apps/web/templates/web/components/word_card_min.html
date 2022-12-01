@@ -1,6 +1,9 @@
 <div class="card" >
     <div class="card-body">
-        <h5 class="card-title" id="word-form">{{ form.word_from.value }}</h5>
+        <h5 class="card-title" id="word-form">
+            {{ form.word_from.value }}
+            <small class="text-muted fw-light">{{ form.transcription }}</small>
+        </h5>
         <p class="card-text" id="word-form">{{ form.word_to.value }}</p>
     </div>
 </div>

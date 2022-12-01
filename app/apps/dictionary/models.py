@@ -114,3 +114,4 @@ class Words(models.Model):
     example_1 = models.CharField(_("Example 1"), max_length=255, null=True, blank=True, default="")
     example_2 = models.CharField(_("Example 2"), max_length=255, null=True, blank=True, default="")
     frequency = models.SmallIntegerField(_("Frequency"), default=10)
+    transcription = models.CharField(_("Transcription"), max_length=100, null=True, blank=True, default="")

@@ -43,6 +43,7 @@ class LearningModeService:
                     'id': word.id,
                     'word_from': word.word_from,
                     'word_to': word.word_to,
+                    'transcription': word.transcription,
                     'image': word.image and word.image.url or None,
                     'example_1': word.example_1,
                     'example_2': word.example_2,

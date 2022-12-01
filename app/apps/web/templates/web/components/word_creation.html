@@ -23,6 +23,12 @@
             </div>
 
             <div class="col-md-5">
+              Transcription
+              <input type="text" name="transcription" class="form-control" placeholder="" required="" value="{{form.transcription.value}}">
+              {{ form.transcription.errors }}
+            </div>
+
+            <div class="col-md-5">
               Image
                <input type="file" name="image" accept="image/*">
             </div>

@@ -3,7 +3,10 @@
         <img class="card-img-top" src="/media/{{ form.image.value }}">
     {% endif %}
     <div class="card-body">
-        <h5 class="card-title" id="word-form">{{ form.word_from.value }}</h5>
+        <h5 class="card-title" id="word-form">
+            {{ form.word_from.value }}
+            <small class="text-muted fw-light">{{ form.transcription }}</small>
+        </h5>
         <p class="card-text">{{ form.word_to.value }}</p>
 
         <h6 class="card-title">Examples: </h6>
