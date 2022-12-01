@@ -21,10 +21,10 @@ class Answer:
 
 
 class LearningModeService:
-    CHOICES = 'choices'
-    CHOICES_REVERSE = 'choices_reverse'
-    WORD_BUILD = 'word_build'
-    WORD_WRITE = 'word_write'
+    CHOICES = 'choice'
+    CHOICES_REVERSE = 'choice_reverse'
+    WORD_BUILD = 'word_builder'
+    WORD_WRITE = 'word_writer'
     TYPES = [CHOICES, CHOICES_REVERSE, WORD_BUILD, WORD_WRITE]
 
     def __init__(self, timeout: int = settings.LEARNER_SESSION_TIMEOUT):
@@ -33,10 +33,11 @@ class LearningModeService:
     def init_session(self, request, dict_id):
         session = uuid.uuid4()
         words = dict_models.Words.objects.filter(dictionary__id=dict_id, active=True)
-        dict_ = dict_models.Dictionary.objects.get(pk=dict_id)
+        dict_ = dict_models.Dictionary.objects.prefetch_related('learning_mods').get(pk=dict_id)
         init_data = {
             'user_id': request.user.is_authenticated and request.user.id or None,
             'dict_id': dict_id,
+            'mods': [mode.code for mode in dict_.learning_mods.all()],
             'words': {
                 word.id: {
                     'id': word.id,
@@ -69,8 +70,8 @@ class LearningModeService:
                 attempt_models.Attempt.objects.create(user=user, dictionary_id=context['dict_id'])
             return {
                 "type": "finish",
-                 "progress": 100,
-                "last_attempts": user and user.attempts.filter(date__gte=datetime.date.today()) or []
+                "progress": 100,
+                "last_attempts": user and user.attempts.filter(date__gte=datetime.date.today()) or [],
             }
         return self._next(context)
 
@@ -81,7 +82,7 @@ class LearningModeService:
         default_form = {
             "progress": round(context['answered'] / context['answers_count'] * 100),
         }
-        if not next_word['progress'][self.CHOICES]:
+        if self.CHOICES in context['mods'] and not next_word['progress'][self.CHOICES]:
             choices = [*[word['word_to']
                          for word in context['words'].values()
                          if word['id'] != next_word['id']][:3],
@@ -93,7 +94,7 @@ class LearningModeService:
                 "word": next_word,
                 "choices": choices
             }
-        elif not next_word['progress'][self.CHOICES_REVERSE]:
+        elif self.CHOICES_REVERSE in context['mods'] and not next_word['progress'][self.CHOICES_REVERSE]:
             choices = [*[word['word_from']
                          for word in context['words'].values()
                          if word['id'] != next_word['id']][:3],
@@ -105,7 +106,7 @@ class LearningModeService:
                 "word": next_word,
                 "choices": choices
             }
-        if not next_word['progress'][self.WORD_BUILD]:
+        if self.WORD_BUILD in context['mods'] and not next_word['progress'][self.WORD_BUILD]:
             symbols = list(next_word['word_from'])
             random.shuffle(symbols)
             return {
@@ -114,7 +115,7 @@ class LearningModeService:
                 "word": next_word,
                 "symbols": symbols,
             }
-        if not next_word['progress'][self.WORD_WRITE]:
+        if self.WORD_WRITE in context['mods'] and not next_word['progress'][self.WORD_WRITE]:
             return {
                 **default_form,
                 "type": self.WORD_WRITE,

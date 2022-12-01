@@ -11,6 +11,7 @@ admin.site.register(models.Tag, ModelAdmin)
 admin.site.register(models.Rate, ModelAdmin)
 admin.site.register(models.Language, ModelAdmin)
 admin.site.register(models.Words, ModelAdmin)
+admin.site.register(models.LearningMode, ModelAdmin)
 
 
 class WordInline(admin.TabularInline):
@@ -37,7 +38,7 @@ class DictionaryAdmin(admin.ModelAdmin):
             _(""),
             {
                 "fields": ["name", "owner", "language_from", "language_to", "is_public",
-                           "is_active", "date_created", "level", "tags"],
+                           "is_active", "date_created", "level", "tags", "learning_mods"],
             },
         ),
     )

@@ -15,23 +15,8 @@
         <div class="row text-center">
             {% if user.is_authenticated %}
                 <h1 class="fw-light">Hello, {{ user.username }}</h1>
-                <p class="card-text">Last month progress: </p>
-
-                {% for progress_ in progress %}
-                    <div class="col">
-                        <div class="card mb-2">
-                          <div class="card-body">
-                            <h5 class="card-title">{{ progress_.dictionary__name }}</h5>
-                            <p class="card-text">You have learned {{ progress_.amount }} times for last month </p>
-                              {% if progress_.attempts|length > 1 %}
-                                <canvas id="chart-{{ progress_.dictionary_id }}"></canvas>
-                              {% endif %}
-                            <a href="/dictionary/{{ progress_.dictionary_id }}/" class="btn btn-primary">Learn it</a>
-                          </div>
-                        </div>
-                    </div>
-                {% endfor %}
-
+                <p class="card-text">Last week progress: </p>
+                {% include 'web/components/progress_container.html' with progress=progress %}
 
                 <h1 class="fw-light">Searching</h1>
                 {% include 'web/components/searching.html' %}
@@ -45,22 +30,4 @@
             {% endif %}
         </div>
     </div>
-
-    <script>
-        {% for progress_ in progress %}
-            {% if progress_.attempts|length > 1 %}
-                new Chart(document.getElementById('chart-{{ progress_.dictionary_id }}'), {
-                    type: 'line',
-                    data: {
-                      labels: [{% for attempt in progress_.attempts %}"{{ attempt.date }}",{% endfor %}],
-                      datasets: [{
-                        label: 'dates',
-                        data: [{% for attempt in progress_.attempts %}{{ attempt.amount }},{% endfor %}],
-                        borderWidth: 1
-                      }]
-                    },
-                });
-            {% endif %}
-        {% endfor %}
-    </script>
 {% endblock %}

@@ -4,13 +4,12 @@ from apps.dictionary import models as dict_models
 
 
 class DictionaryForm(forms.ModelForm):
-    id = forms.IntegerField()
-    file = forms.ImageField()
+    id = forms.IntegerField(required=False)
 
     class Meta:
         model = dict_models.Dictionary
         fields = ("id", "name", "language_from", "language_to", "level", "tags",
-                  "is_public", "session_count")
+                  "is_public", "session_count", "learning_mods")
 
 
 class WordForm(forms.ModelForm):

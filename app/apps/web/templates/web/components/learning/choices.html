@@ -1,24 +1,23 @@
 
-<div class="container text-center">
-    <div class="card" id="choices">
-            {% if form.word.image %}
-                <img class="card-img-top" src="{{ form.word.image }}">
-            {% endif %}
-        <div id="choices" class="text-center">
-            <h5 class="card-title">{{ form.word.word_from }}</h5>
-            {% for choice in form.choices %}
-                <button type="button" onclick="show(
-                        {{ form.word.id }},
-                        {% if form.word.word_to == choice %}true{% else %}false{% endif %}
-                        )" class="btn btn-secondary col-md-7 mt-2 mb-2">{{ choice }}</button>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div hidden id="word-card">
-        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+<div class="card" id="choices">
+        {% if form.word.image %}
+            <img class="card-img-top" src="{{ form.word.image }}">
+        {% endif %}
+    <div id="choices" class="text-center">
+        <h5 class="card-title">{{ form.word.word_from }}</h5>
+        {% for choice in form.choices %}
+            <button type="button" onclick="show(
+                    {{ form.word.id }},
+                    {% if form.word.word_to == choice %}true{% else %}false{% endif %}
+                    )" class="btn btn-secondary col-md-7 mt-2 mb-2">{{ choice }}</button>
+        {% endfor %}
     </div>
 </div>
+
+<div hidden id="word-card">
+    {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+</div>
+
 
 <script>
 function show(id, success){

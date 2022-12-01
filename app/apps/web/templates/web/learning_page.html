@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="progress mb-4">
-  <div class="progress-bar" style="width: {{ form.progress }}%" role="progressbar" aria-valuenow="{{ form.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        {% if form.type == 'choices' %}
-            {% include 'web/components/learning/choices.html' with form=form %}
-        {% elif form.type == 'choices_reverse' %}
-            {% include 'web/components/learning/choices_reverse.html' with form=form %}
-        {% elif form.type == 'word_build' %}
-            {% include 'web/components/learning/word_build.html' with form=form %}
-        {% elif form.type == 'word_write' %}
-            {% include 'web/components/learning/word_write.html' with form=form %}
-        {% elif form.type == 'finish' %}
-            {% include 'web/components/learning/finish.html' with form=form %}
-        {% endif %}
-</div>
+    <div class="progress mb-4">
+      <div class="progress-bar" style="width: {{ form.progress }}%" role="progressbar" aria-valuenow="{{ form.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-6 mx-auto">
+                    {% if form.type == 'choice' %}
+                        {% include 'web/components/learning/choices.html' with form=form %}
+                    {% elif form.type == 'choice_reverse' %}
+                        {% include 'web/components/learning/choices_reverse.html' with form=form %}
+                    {% elif form.type == 'word_builder' %}
+                        {% include 'web/components/learning/word_build.html' with form=form %}
+                    {% elif form.type == 'word_writer' %}
+                        {% include 'web/components/learning/word_write.html' with form=form %}
+                    {% elif form.type == 'finish' %}
+                        {% include 'web/components/learning/finish.html' with form=form %}
+                    {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

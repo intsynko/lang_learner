@@ -25,18 +25,24 @@ class MainPage(TemplateView):
         if self.request.user.is_authenticated:
             attempts = Attempt.objects.filter(
                 user=self.request.user,
-                date__gte=timezone.now() - datetime.timedelta(days=30)
+                date__gte=timezone.now() - datetime.timedelta(days=7)
             ).values(
                 'dictionary_id', 'dictionary__name', 'date'
             ).annotate(
                 amount=Count('date')
             ).order_by('dictionary_id', 'date')
             context['progress'] = []
-            for dict_id, attempts in groupby(attempts, key=lambda x: x['dictionary_id']):
-                attempts = list(attempts)
+            for (dict_id, name), attempts in groupby(attempts, key=lambda x: (x['dictionary_id'],x['dictionary__name'])):
+                attempts_dict = {str(attempt['date']): attempt for attempt in attempts}
+                attempts = []
+                for days_ago in range(7, -1, -1):
+                    date = datetime.date.today() - datetime.timedelta(days=days_ago)
+                    date = str(date)
+                    attempt = attempts_dict.get(date, {"amount": 0, "date": date})
+                    attempts.append(attempt)
                 data = {
                     "dictionary_id": dict_id,
-                    "dictionary__name": attempts[0]["dictionary__name"],
+                    "dictionary__name": name,
                     "attempts": attempts,
                     "amount": sum([attempt['amount'] for attempt in attempts])
                 }

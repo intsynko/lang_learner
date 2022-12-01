@@ -28,6 +28,14 @@ class Level(models.Model):
         return self.name
 
 
+class LearningMode(models.Model):
+    name = models.CharField(_("Name"), max_length=50)
+    code = models.CharField(_("Code"), max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Dictionary(models.Model):
     language_from = models.ForeignKey(Language, verbose_name=_("Language from"), on_delete=models.PROTECT, related_name="dicts_to")
     language_to = models.ForeignKey(Language, verbose_name=_("Language to"), on_delete=models.PROTECT, related_name="dicts_from")
@@ -35,6 +43,7 @@ class Dictionary(models.Model):
     owner = models.ForeignKey("account.User", verbose_name=_("Owner"), on_delete=models.PROTECT, related_name="dicts")
     date_created = models.DateField(_("Date"), auto_now=True)
     pinned = models.ManyToManyField("account.User", verbose_name=_("Pinned"), related_name="dicts_pinned")
+    learning_mods = models.ManyToManyField(LearningMode, verbose_name=_("Learning mods"), related_name="dicts")
 
     is_public = models.BooleanField(_("Is public"), default=True)
     tags = models.ManyToManyField(to=Tag, blank=True, verbose_name=_("Tags"), related_name="dicts")

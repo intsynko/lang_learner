@@ -1,0 +1,63 @@
+{% for progress_ in progress %}
+    <div class="col col-lg-4">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h5 class="card-title">{{ progress_.dictionary__name }}</h5>
+            <p class="card-text">You have learned {{ progress_.amount }} times for last week </p>
+              {% if progress_.attempts|length > 1 %}
+                <canvas id="chart-{{ progress_.dictionary_id }}" height="50"></canvas>
+              {% endif %}
+            <a href="/dictionary/{{ progress_.dictionary_id }}/" class="btn btn-primary mt-2">Learn it</a>
+          </div>
+        </div>
+    </div>
+{% endfor %}
+
+<script>
+    {% for progress_ in progress %}
+        {% if progress_.attempts|length > 1 %}
+            new Chart(document.getElementById('chart-{{ progress_.dictionary_id }}'), {
+                type: 'line',
+                data: {
+                  labels: [{% for attempt in progress_.attempts %}"{{ attempt.date }}",{% endfor %}],
+                  datasets: [{
+                    data: [{% for attempt in progress_.attempts %}{{ attempt.amount }},{% endfor %}],
+                    tension: 0.3,
+                  }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                    },
+
+                    scales: {
+                        x: {
+                            ticks: {
+                                display: false,
+                            },
+                            border: {
+                                display: false
+                            },
+                            grid: {
+                                display: false,
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                display: false,
+                            },
+                            border: {
+                                display: false
+                            },
+                            grid: {
+                                display: false
+                            },
+                        }
+                    }
+                }
+            });
+        {% endif %}
+    {% endfor %}
+</script>

@@ -2,7 +2,7 @@
 
 {% block content %}
     {% include 'web/components/dictionary_creation.html' with form=form %}
-    {% if form.id.value %}
+    {% if form.id.value and form.id.value != 'None' %}
         <h4 class="mb-3">Words</h4>
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="words">

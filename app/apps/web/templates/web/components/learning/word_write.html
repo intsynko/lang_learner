@@ -1,25 +1,24 @@
 
-<div class="container text-center">
-    <div class="card" id="choices">
-            {% if form.word.image %}
-                <img class="card-img-top" src="{{ form.word.image }}">
-            {% endif %}
-        <div id="choices" class="card-body">
-            <h5 class="card-title">{{ form.word.word_to }}</h5>
+<div class="card" id="choices">
+        {% if form.word.image %}
+            <img class="card-img-top" src="{{ form.word.image }}">
+        {% endif %}
+    <div id="choices" class="card-body">
+        <h5 class="card-title">{{ form.word.word_to }}</h5>
 
-            <div class="col">
-               <input name="result" id="result" class="form-control">
-            </div>
+        <div class="col">
+           <input name="result" id="result" class="form-control">
         </div>
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 mt-2">
             <button onclick="check()" type="button" class="btn btn-primary">Check</button>
         </div>
     </div>
-
-    <div hidden id="word-card">
-        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
-    </div>
 </div>
+
+<div hidden id="word-card">
+    {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+</div>
+
 
 <script>
 

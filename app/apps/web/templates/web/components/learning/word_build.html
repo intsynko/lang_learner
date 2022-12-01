@@ -1,32 +1,30 @@
 
-<div class="container text-center">
-    <div class="card" id="choices">
-            {% if form.word.image %}
-                <img class="card-img-top" src="{{ form.word.image }}">
-            {% endif %}
-        <div id="choices" class="text-center">
-            <h5 class="card-title">{{ form.word.word_to }}</h5>
+<div class="card" id="choices">
+        {% if form.word.image %}
+            <img class="card-img-top" src="{{ form.word.image }}">
+        {% endif %}
+    <div id="choices" class="text-center">
+        <h5 class="card-title">{{ form.word.word_to }}</h5>
 
-            <div class="row text-center">
-                <div class="btn-group" role="group" aria-label="Basic example" id="words-container">
-                    {% for sym in form.symbols %}
-                        <button type="button" class="btn">_</button>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div id="buttons-container">
+        <div class="row text-center">
+            <div class="btn-group" role="group" aria-label="Basic example" id="words-container">
                 {% for sym in form.symbols %}
-                    <button type="button" onclick="check(this, '{{ sym }}')"  class="btn btn-secondary mt-2 mb-2">{{ sym }}</button>
+                    <button type="button" class="btn">_</button>
                 {% endfor %}
             </div>
-
         </div>
-    </div>
 
-    <div hidden id="word-card">
-        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+        <div id="buttons-container">
+            {% for sym in form.symbols %}
+                <button type="button" onclick="check(this, '{{ sym }}')"  class="btn btn-secondary mt-2 mb-2">{{ sym }}</button>
+            {% endfor %}
+        </div>
+
     </div>
+</div>
+
+<div hidden id="word-card">
+    {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
 </div>
 
 <script>

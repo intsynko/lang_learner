@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 from apps.dictionary import models as dict_models
 from apps.web.forms import DictionaryForm, WordForm
 from apps.web.serializers import DictionaryDetailSerializer, LanguageSerizlizer, LevelSerizlizer, \
-    TagSerizlizer
+    TagSerizlizer, LearningModeSerizlizer
 
 
 class DictionaryDetailPage(TemplateView):
@@ -83,10 +83,11 @@ class DictionaryCreatePage(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        context['form'] = DictionaryForm()
+        context['form'] = DictionaryForm({"learning_mods": dict_models.LearningMode.objects.all()})
         context['languages'] = [LanguageSerizlizer(instance=lang).data for lang in dict_models.Language.objects.all()]
         context['levels'] = [LevelSerizlizer(instance=level).data for level in dict_models.Level.objects.all()]
         context['tags'] = [TagSerizlizer(instance=tag).data for tag in dict_models.Tag.objects.all()]
+        context['learning_mods'] = [LearningModeSerizlizer(instance=mode).data for mode in dict_models.LearningMode.objects.all()]
         return context
 
     @method_decorator(csrf_protect)
@@ -110,11 +111,12 @@ class DictionaryCreatePage(TemplateView):
             dict = form.save(commit=False)
             dict.owner = request.user
             form.save()
-            return redirect(f'/dictionary/{form.instance.id}/')
+            return redirect(f'/dictionary/{form.instance.id}/update/')
 
         context = self.get_context_data(**kwargs, request=request)
         context["form"] = form
-        context["words"] = [WordForm(instance=word) for word in form.instance.words.filter(active=True)]
+        context["words"] = [WordForm(instance=word) for word in form.instance.words.filter(active=True)] \
+            if form.instance.id else []
         return render(request, self.template_name, context)
 
 

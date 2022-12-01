@@ -17,6 +17,11 @@ class TagSerizlizer(serializers.Serializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
 
+class LearningModeSerizlizer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    code = serializers.CharField()
+
 
 class DictionarySerializer(serializers.Serializer):
     id = serializers.IntegerField()
