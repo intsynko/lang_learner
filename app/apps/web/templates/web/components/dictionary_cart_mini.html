@@ -1,0 +1,21 @@
+<div class="card rounded-3 shadow-sm h-100">
+    <div class="card-body">
+        <h3 class="pl-2 fw-light">
+            <span href="/?lang={{ dictionary.lang_from.code }}" role="button">
+                <img src="{{ dictionary.lang_from.icon }}" alt="lang_from"
+                     style="width: 30px; height: 30px; margin-top: -10px">
+            </span>
+            {{ dictionary.name }}
+        </h3>
+        <a href="/?level={{ dictionary.level }}" class="badge bg-warning">
+            {{ dictionary.level }}
+        </a>
+        {% for tag in dictionary.tags %}
+            <a href="/?tag={{ tag }}" role="button" class="badge bg-secondary">
+                {{ tag }}
+            </a>
+        {% endfor %}
+
+        <a class="stretched-link mt-3" href="/dictionary/{{ dictionary.id }}/repeat/"></a>
+    </div>
+</div>

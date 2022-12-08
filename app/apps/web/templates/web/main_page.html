@@ -14,18 +14,26 @@
     <div class="container">
         <div class="row text-center">
             {% if user.is_authenticated %}
-                <h1 class="fw-light">Hello, {{ user.username }}</h1>
-                {% if progress %}
-                    <p class="card-text">Last week progress: </p>
-                    {% include 'web/components/progress_container.html' with progress=progress %}
-                {% else %}
-                     <p class="card-text">Here you will see your progress</p>
-                {% endif %}
+                <div class="mb-5">
+                    <h1 class="fw-light">Hello, {{ user.username }}
+                    {% if progress %}
+                        , your last week progress:
+                    {% else %}
+                         , here you will see your progress
+                    {% endif %}
+                    </h1>
+                    {% if progress %}
+                        <div class="row justify-content-center mt-3">
+                            {% include 'web/components/progress_container.html' with progress=progress %}
+                        </div>
+                    {% endif %}
+                </div>
 
-                <h1 class="fw-light">Searching</h1>
+
+                <h1 class="fw-light mb-3">Searching</h1>
                 {% include 'web/components/searching.html' %}
             {% else %}
-                <div>
+                <div style="margin-top: 10%;">
                     <h1 class="fw-light">Dictionaries from users all over the world</h1>
                     <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
                     {% include 'web/components/searching.html' %}

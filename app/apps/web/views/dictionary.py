@@ -1,4 +1,9 @@
+import logging
+import uuid
+
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.decorators import login_required
+from django.core.cache import caches
 from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
@@ -6,9 +11,12 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import TemplateView
 
 from apps.dictionary import models as dict_models
-from apps.web.forms import DictionaryForm, WordForm
+from apps.web.forms import DictionaryForm, WordForm, DictUploadForm, DictSelectForm
 from apps.web.serializers import DictionaryDetailSerializer, LanguageSerizlizer, LevelSerizlizer, \
     TagSerizlizer, LearningModeSerizlizer
+
+
+logger = logging.getLogger(__name__)
 
 
 class DictionaryDetailPage(TemplateView):
@@ -149,3 +157,48 @@ class DictionaryRemovePage(DictionaryCreatePage):
         dict.is_active = False
         dict.save()
         return redirect(request.POST.get("path") or "/")
+
+
+class DictionaryUpload(TemplateView):
+    template_name = 'web/dictionary_upload.html'
+    cache = caches['file_uploading']
+
+    def post(self, request, *args, **kwargs):
+        import json
+        if request.POST.get('type') == 'file':
+            form = DictUploadForm(request.POST, request.FILES)
+            if not form.is_valid():
+                return render(request, self.template_name, context={"form": form})
+            try:
+                file = form.cleaned_data['file']
+                data = file.read()
+                parsed_data = json.loads(data)
+            except Exception as ex:
+                logger.info(f"error while file parsing {ex}")
+                form.errors['file'] = _("Error while file parsing")
+                return render(request, self.template_name, context={"form": form, })
+            key = str(uuid.uuid4())
+            self.cache.set(key, data, timeout=5 * 60)
+            return render(request, self.template_name, context={
+                "form": form,
+                "parsed": {
+                    "data_example": parsed_data[0],
+                    "key": key
+                }
+            })
+
+        form = DictSelectForm(request.POST)
+        if not form.is_valid():
+            return render(request, self.template_name, context={"form": form})
+
+
+        key = form.cleaned_data["key"]
+        data = self.cache.get(key)
+        parsed_data = json.loads(data)
+        return render(request, self.template_name, context={
+            "form": form,
+            "parsed": {
+                "data_example": parsed_data[0],
+                "key": form.cleaned_data["key"]
+            }
+        })

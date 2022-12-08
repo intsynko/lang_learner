@@ -62,3 +62,18 @@ class WordForm(forms.ModelForm):
 class RepeatForm(forms.Form):
     word = forms.IntegerField()
     success = forms.BooleanField()
+
+
+class DictUploadForm(forms.Form):
+    file = forms.FileField()
+
+
+class DictSelectForm(forms.Form):
+    key = forms.CharField()
+    fields = forms.MultipleChoiceField(choices=(("word_from", ""), ("word_to", ""), ("transcription", "")))
+
+    def clean_fields(self):
+        fields = self.cleaned_data['fields']
+        if len(set(fields)) != len(fields):
+            raise ValidationError(_("Fields shouldn't repeat"))
+        return fields

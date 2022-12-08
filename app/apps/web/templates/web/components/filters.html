@@ -1,27 +1,36 @@
-<div class="accordion-body btn-group">
-
-    <select name="lang" class="form-select form-select-md">
-        <option selected value> All languages </option>
-        {% for lang in languages %}
-            <option value="{{lang.code}}" {% if q.lang == lang.code %}selected{% endif %}>
-                {{lang.name}}
-            </option>
-        {% endfor %}
-    </select>
-    <select name="level" class="form-select form-select-md">
-        <option selected value>All levels </option>
-        {% for level in levels %}
-            <option value="{{level.name}}" {% if q.level == level.name %}selected{% endif %}>
-                {{level.name}}
-            </option>
-        {% endfor %}
-    </select>
-    <select name="tag" class="form-select form-select-md">
-        <option selected value>All tags </option>
-        {% for tag in tags %}
-            <option value="{{tag.name}}" {% if tag.name in q.tags %}selected{% endif %}>
-                {{tag.name}}
-            </option>
-        {% endfor %}
-    </select>
+<div class="row">
+    <div class="col">
+        <select name="lang" class="form-select form-select-md">
+            <option selected value> All languages</option>
+            {% for lang in languages %}
+                <option value="{{ lang.code }}"
+                        {% if q.lang == lang.code %}selected{% endif %}>
+                    {{ lang.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col">
+        <select name="level" class="form-select form-select-md">
+            <option selected value>All levels</option>
+            {% for level in levels %}
+                <option value="{{ level.name }}"
+                        {% if q.level == level.name %}selected{% endif %}>
+                    {{ level.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col">
+        <select name="tag" class="form-select form-select-md">
+            <option selected value>All tags</option>
+            {% for tag in tags %}
+                <option value="{{ tag.name }}"
+                        {% if tag.name in q.tags %}selected{% endif %}>
+                    {{ tag.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
 </div>
+

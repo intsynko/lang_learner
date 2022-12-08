@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-lg-6">
+            <form method="POST" class="mx-auto" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input hidden name="key" value="{{ parsed.key }}">
+                {% if not parsed.key %}
+                    <label for="file_input">Insert file (accept for now only .json)</label>
+                    <input type="file" id="file_input" class="form-control" name="file">
+                    {{ form.file.errors }}
+                    <button type="submit" class="btn btn-primary mt-2">Check file</button>
+                {% else  %}
+                    <h3>Select fields for rows:</h3>
+                    <div class="container">
+                        {% for row in parsed.data_example %}
+                        <div class="row">
+                            <div class="col-lg-5">
+                                {{ row }}
+                            </div>
+                            <div class="col-lg-5">
+                                <select class="form-select" name="fields{{ loop.index }}">
+                                    <option value="word_from">word_from</option>
+                                    <option value="word_from">word_to</option>
+                                    <option value="word_from">transcription</option>
+                              </select>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {{ form.fields.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                {% endif %}
+            </form>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
