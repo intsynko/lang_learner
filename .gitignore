@@ -4,6 +4,6 @@
 /.idea/
 /venv/
 /static/
-/media/
 /redis/
-/app/media/*
+/media/
+/app/media/

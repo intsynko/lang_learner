@@ -1,0 +1,1125 @@
+[
+  {
+    "model": "account.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$sSo90Y7kjW13h0yyM2t9nX$XJUBvZKo83lwfjcTYzBOZI+kWlqTZoe7lhBvT3apiaE=",
+      "last_login": "2022-12-15T16:31:11.984Z",
+      "is_superuser": true,
+      "username": "Kostya",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-11-20T15:50:35Z",
+      "email": "intsyn@mail.ru",
+      "is_email_proved": false,
+      "date_created": "2022-11-20T15:50:35.874Z",
+      "date_activated": null,
+      "date_disabled": null,
+      "date_updated": "2022-11-20T15:51:49.587Z",
+      "status": "created",
+      "language": "en",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$tdzuuO5xWb4XvqZRALtqg3$w4/p8/OdSRQcb5nOXP9/PFFeRN/eH5AS0ILOZabBc8Y=",
+      "last_login": "2022-12-01T08:47:47.351Z",
+      "is_superuser": false,
+      "username": "AlexLol",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-11-21T10:15:56Z",
+      "email": "kek@lol.ru",
+      "is_email_proved": false,
+      "date_created": "2022-11-21T10:15:56.377Z",
+      "date_activated": null,
+      "date_disabled": null,
+      "date_updated": "2022-11-21T10:16:09.250Z",
+      "status": "created",
+      "language": "en",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 3,
+    "fields": {
+      "password": "lkjl",
+      "last_login": "2022-12-01T20:06:20.903Z",
+      "is_superuser": false,
+      "username": "sald",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-12-01T20:06:20.802Z",
+      "email": "kek@mail.ru",
+      "is_email_proved": false,
+      "date_created": "2022-12-01T20:06:20.803Z",
+      "date_activated": null,
+      "date_disabled": null,
+      "date_updated": "2022-12-01T20:06:20.803Z",
+      "status": "created",
+      "language": "en",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 4,
+    "fields": {
+      "password": "None",
+      "last_login": "2022-12-01T20:07:51.428Z",
+      "is_superuser": false,
+      "username": "kostya",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-12-01T20:07:51.391Z",
+      "email": "kek@kek.ru",
+      "is_email_proved": false,
+      "date_created": "2022-12-01T20:07:51.392Z",
+      "date_activated": null,
+      "date_disabled": null,
+      "date_updated": "2022-12-01T20:07:51.392Z",
+      "status": "created",
+      "language": "en",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "account.user",
+    "pk": 5,
+    "fields": {
+      "password": "None",
+      "last_login": "2022-12-01T20:08:24.797Z",
+      "is_superuser": false,
+      "username": "kostya_2",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-12-01T20:08:24.770Z",
+      "email": "kek@lolkek.ru",
+      "is_email_proved": false,
+      "date_created": "2022-12-01T20:08:24.771Z",
+      "date_activated": null,
+      "date_disabled": null,
+      "date_updated": "2022-12-01T20:08:24.771Z",
+      "status": "created",
+      "language": "en",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "dictionary.language",
+    "pk": 1,
+    "fields": {
+      "name": "English",
+      "code": "en",
+      "icon": "icons/icons8-great-britain-48.png"
+    }
+  },
+  {
+    "model": "dictionary.language",
+    "pk": 2,
+    "fields": {
+      "name": "Russian",
+      "code": "ru",
+      "icon": "icons/icons8-russian-federation-48_YSxG00p.png"
+    }
+  },
+  {
+    "model": "dictionary.language",
+    "pk": 3,
+    "fields": {
+      "name": "Turkey",
+      "code": "rt",
+      "icon": "icons/turkey.png"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Daily"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Travelling"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Business"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Sport"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Restourant"
+    }
+  },
+  {
+    "model": "dictionary.tag",
+    "pk": 6,
+    "fields": {
+      "name": "Nature"
+    }
+  },
+  {
+    "model": "dictionary.level",
+    "pk": 1,
+    "fields": {
+      "name": "A1"
+    }
+  },
+  {
+    "model": "dictionary.level",
+    "pk": 2,
+    "fields": {
+      "name": "A2"
+    }
+  },
+  {
+    "model": "dictionary.level",
+    "pk": 3,
+    "fields": {
+      "name": "B1"
+    }
+  },
+  {
+    "model": "dictionary.level",
+    "pk": 4,
+    "fields": {
+      "name": "C1"
+    }
+  },
+  {
+    "model": "dictionary.learningmode",
+    "pk": 1,
+    "fields": {
+      "name": "Choice",
+      "code": "choice"
+    }
+  },
+  {
+    "model": "dictionary.learningmode",
+    "pk": 2,
+    "fields": {
+      "name": "Choise reverse",
+      "code": "choice_reverse"
+    }
+  },
+  {
+    "model": "dictionary.learningmode",
+    "pk": 3,
+    "fields": {
+      "name": "Word builder",
+      "code": "word_builder"
+    }
+  },
+  {
+    "model": "dictionary.learningmode",
+    "pk": 4,
+    "fields": {
+      "name": "Word writer",
+      "code": "word_writer"
+    }
+  },
+  {
+    "model": "dictionary.dictionary",
+    "pk": 4,
+    "fields": {
+      "language_from": 1,
+      "language_to": 2,
+      "name": "Природа",
+      "owner": 2,
+      "date_created": "2022-12-01",
+      "is_public": true,
+      "level": 3,
+      "is_active": true,
+      "session_count": 0,
+      "pinned": [
+        1,
+        5
+      ],
+      "learning_mods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        2,
+        6
+      ]
+    }
+  },
+  {
+    "model": "dictionary.dictionary",
+    "pk": 5,
+    "fields": {
+      "language_from": 1,
+      "language_to": 2,
+      "name": "Спорт",
+      "owner": 2,
+      "date_created": "2022-11-30",
+      "is_public": true,
+      "level": 2,
+      "is_active": true,
+      "session_count": 0,
+      "pinned": [
+        1
+      ],
+      "learning_mods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "dictionary.dictionary",
+    "pk": 6,
+    "fields": {
+      "language_from": 1,
+      "language_to": 2,
+      "name": "Обед в ресторане",
+      "owner": 1,
+      "date_created": "2022-12-15",
+      "is_public": true,
+      "level": 3,
+      "is_active": true,
+      "session_count": 10,
+      "pinned": [],
+      "learning_mods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "dictionary.dictionary",
+    "pk": 24,
+    "fields": {
+      "language_from": 1,
+      "language_to": 2,
+      "name": "школа",
+      "owner": 1,
+      "date_created": "2022-12-01",
+      "is_public": true,
+      "level": 2,
+      "is_active": true,
+      "session_count": 10,
+      "pinned": [
+        2,
+        5
+      ],
+      "learning_mods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "dictionary.dictionary",
+    "pk": 25,
+    "fields": {
+      "language_from": 3,
+      "language_to": 2,
+      "name": "Цифры",
+      "owner": 1,
+      "date_created": "2022-12-15",
+      "is_public": true,
+      "level": 1,
+      "is_active": true,
+      "session_count": 15,
+      "pinned": [],
+      "learning_mods": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 8,
+    "fields": {
+      "image": "words/download.jfif",
+      "dictionary": 6,
+      "word_from": "salted",
+      "word_to": "cоленый",
+      "active": true,
+      "example_1": "Simmer for roughly 4 minutes in salted water.",
+      "example_2": "To reduce the influence of these vegetables to the smell of sweat, the researchers recommend to cook them in salted water.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 9,
+    "fields": {
+      "image": "words/66_tn.jpg",
+      "dictionary": 6,
+      "word_from": "spicy",
+      "word_to": "острый",
+      "active": true,
+      "example_1": "This spicy sauce is widespread throughout Georgia and it is thought that it helps to digest food",
+      "example_2": "Fish containing toxic levels of histamine often taste unusually bitter or spicy.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 10,
+    "fields": {
+      "image": "words/download_1.jfif",
+      "dictionary": 6,
+      "word_from": "sweet",
+      "word_to": "сладкий",
+      "active": true,
+      "example_1": "The taste has sour, sweet, light sweet, sour sweet and so on.",
+      "example_2": "The aril contains a non-toxic, intensely sweet protein named thaumatin, which is at least 3000 times as sweet as sucrose.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 11,
+    "fields": {
+      "image": "words/download_2.jfif",
+      "dictionary": 6,
+      "word_from": "bitter",
+      "word_to": "горький",
+      "active": true,
+      "example_1": "The bitter historical paradox: his people never acknowledged that",
+      "example_2": "Chocolate (both white and bitter).",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 12,
+    "fields": {
+      "image": "words/ed9f9bb3f18e2d0559895b30e9ba3995.jpg",
+      "dictionary": 5,
+      "word_from": "gym",
+      "word_to": "тренажерный зал",
+      "active": true,
+      "example_1": "People without access to a gym.",
+      "example_2": "Lauren regularly hits the gym to keep herself fit.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 13,
+    "fields": {
+      "image": "words/exesice.jpg",
+      "dictionary": 5,
+      "word_from": "exercise",
+      "word_to": "упражнение",
+      "active": true,
+      "example_1": "You must exercise it every day.",
+      "example_2": "Protein consumed during exercise may help speed recovery following exercise.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 14,
+    "fields": {
+      "image": "words/40.1squat.jpg",
+      "dictionary": 5,
+      "word_from": "crouching",
+      "word_to": "приседание",
+      "active": true,
+      "example_1": "I run at you and force you to block my attack sequence (you'll block it crouching).",
+      "example_2": "By crouching, we can reduce the recoil of our weapons, which is very helpful.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 15,
+    "fields": {
+      "image": "words/fbd8057157ba1904f69dfb9df0e3b156.jpg",
+      "dictionary": 5,
+      "word_from": "push-up",
+      "word_to": "отжимание",
+      "active": true,
+      "example_1": "Let it be one particular push-up, but it is really gaining nearer to my purpose",
+      "example_2": "Allow it be one push-up, but it is finding closer to my intention",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 16,
+    "fields": {
+      "image": "words/eb016c03bc80f92f1d8b5cb8f703ceb6_ce_1920x1024x0x28_cropped_666x444.jpg",
+      "dictionary": 5,
+      "word_from": "pull-up",
+      "word_to": "подтягивание",
+      "active": true,
+      "example_1": "This is a great and terrible <b>pull-up</b>, and it's time to make friends with him.",
+      "example_2": "When I started climbing, I was SO intimidated by the pull-up.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 17,
+    "fields": {
+      "image": "words/Prirodnye-jekosistemy.jpg",
+      "dictionary": 4,
+      "word_from": "nature",
+      "word_to": "природа",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 18,
+    "fields": {
+      "image": "words/rasteniya-lekarstva-dikie-derevya-01.jpg",
+      "dictionary": 4,
+      "word_from": "tree",
+      "word_to": "дерево",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 19,
+    "fields": {
+      "image": "words/download_3.jfif",
+      "dictionary": 4,
+      "word_from": "forest",
+      "word_to": "лес",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 20,
+    "fields": {
+      "image": "words/Трава_2015.JPG",
+      "dictionary": 4,
+      "word_from": "grass",
+      "word_to": "трава",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 21,
+    "fields": {
+      "image": "words/voda1.jpg",
+      "dictionary": 4,
+      "word_from": "water",
+      "word_to": "вода",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 22,
+    "fields": {
+      "image": "",
+      "dictionary": 6,
+      "word_from": "rasberry",
+      "word_to": "малина",
+      "active": false,
+      "example_1": "Rasberry and Rum in Space",
+      "example_2": "Could you please give me rasberry juice?",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 23,
+    "fields": {
+      "image": "",
+      "dictionary": 6,
+      "word_from": "strawberry",
+      "word_to": "клубника",
+      "active": false,
+      "example_1": "Like strawberry and curry and that.",
+      "example_2": "Second dinner: salad fruit (orange, banana, strawberry) (150 grams).",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 24,
+    "fields": {
+      "image": "words/b5dd3ff8_sBQi0Wj.jpg",
+      "dictionary": 6,
+      "word_from": "blueberry",
+      "word_to": "черника",
+      "active": false,
+      "example_1": "Blueberry is a real treasure of useful substances, it is also valuable medicinal plant.",
+      "example_2": "Blueberry has been long ago recognized as a miracle berry in all respects.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 25,
+    "fields": {
+      "image": "words/ananas-329x270_wnl9SgP.jpg",
+      "dictionary": 6,
+      "word_from": "pineapple",
+      "word_to": "ананас",
+      "active": false,
+      "example_1": "Beryl next door - face like a pineapple.",
+      "example_2": "People who are allergic to pineapple should avoid bromelain.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 26,
+    "fields": {
+      "image": "words/rendered-min-e1598873182651.jpg",
+      "dictionary": 6,
+      "word_from": "smootie",
+      "word_to": "смузи",
+      "active": true,
+      "example_1": "That's been there since your green smoothie phase.",
+      "example_2": "Drink a high-protein smoothie containing 20 to 30 grams of whey protein twice daily",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 27,
+    "fields": {
+      "image": "words/21118-ed4_wide_3DKv744.jpg",
+      "dictionary": 6,
+      "word_from": "pasta",
+      "word_to": "паста (макароны)",
+      "active": false,
+      "example_1": "Caprese salad, pasta primavera, and pistachio gelato for dessert",
+      "example_2": "People think Italian food is just pizza and pasta.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 28,
+    "fields": {
+      "image": "words/Heritage_Raspberry_1_FGT_650x_6a4dwYW.webp",
+      "dictionary": 6,
+      "word_from": "rasberry",
+      "word_to": "малина",
+      "active": true,
+      "example_1": "Rasberry and Rum in Space",
+      "example_2": "Could you please give me rasberry juice?",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 29,
+    "fields": {
+      "image": "words/728x542_1_4ca769fc7c4df783312357673aa00d661000x745_0xac120003_1375478751562646998_1vwrCYu.jpg",
+      "dictionary": 6,
+      "word_from": "strawberry",
+      "word_to": "клубника",
+      "active": true,
+      "example_1": "Like strawberry and curry and that.",
+      "example_2": "Second dinner: salad fruit (orange, banana, strawberry) (150 grams).",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 30,
+    "fields": {
+      "image": "words/b5dd3ff8.jpg",
+      "dictionary": 6,
+      "word_from": "blueberry",
+      "word_to": "черника",
+      "active": true,
+      "example_1": "Blueberry is a real treasure of useful substances, it is also valuable medicinal plant.",
+      "example_2": "Blueberry has been long ago recognized as a miracle berry in all respects.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 31,
+    "fields": {
+      "image": "words/ananas-329x270.jpg",
+      "dictionary": 6,
+      "word_from": "pineapple",
+      "word_to": "ананас",
+      "active": true,
+      "example_1": "Beryl next door - face like a pineapple.",
+      "example_2": "People who are allergic to pineapple should avoid bromelain.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 32,
+    "fields": {
+      "image": "words/21118-ed4_wide.jpg",
+      "dictionary": 6,
+      "word_from": "pasta",
+      "word_to": "паста (макароны)",
+      "active": true,
+      "example_1": "Caprese salad, pasta primavera, and pistachio gelato for dessert",
+      "example_2": "People think Italian food is just pizza and pasta.",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 33,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "board",
+      "word_to": "доска",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 34,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "учитель",
+      "word_to": "teacher",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 35,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "ученик",
+      "word_to": "pupil",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": ""
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 36,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "teacher",
+      "word_to": "учитель",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 37,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "pupil",
+      "word_to": "ученик",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 38,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "school",
+      "word_to": "школа",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 39,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "lesson",
+      "word_to": "урок",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 40,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "exam",
+      "word_to": "экзамен",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 41,
+    "fields": {
+      "image": "",
+      "dictionary": 24,
+      "word_from": "break",
+      "word_to": "перемена",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "[]"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 42,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "iki",
+      "word_to": "два",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "None"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 43,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "üç",
+      "word_to": "три",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "None"
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 44,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "iki",
+      "word_to": "два",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 45,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "üç",
+      "word_to": "три",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 46,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "bir",
+      "word_to": "один",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 47,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "dört",
+      "word_to": "четыре",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 48,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "beş",
+      "word_to": "пять",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 49,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "altı",
+      "word_to": "шесть",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 50,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "yedi",
+      "word_to": "семь",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 51,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "sekiz",
+      "word_to": "восмь",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 52,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "sekiz",
+      "word_to": "восемь",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 53,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "dokuz",
+      "word_to": "девять",
+      "active": false,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 54,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "sekiz",
+      "word_to": "восемь",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 55,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "dokuz",
+      "word_to": "девять",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": null
+    }
+  },
+  {
+    "model": "dictionary.words",
+    "pk": 56,
+    "fields": {
+      "image": "",
+      "dictionary": 25,
+      "word_from": "on",
+      "word_to": "десять",
+      "active": true,
+      "example_1": "None",
+      "example_2": "None",
+      "frequency": 10,
+      "transcription": "-"
+    }
+  }
+]
