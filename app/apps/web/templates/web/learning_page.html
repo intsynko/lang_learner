@@ -7,7 +7,9 @@
     <div class="container">
         <div class="row">
             <div class="col col-lg-4 mx-auto">
-                    {% if form.type == 'choice' %}
+                    {% if form.type == 'cart' %}
+                        {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
+                    {% elif form.type == 'choice' %}
                         {% include 'web/components/learning/choices.html' with form=form %}
                     {% elif form.type == 'choice_reverse' %}
                         {% include 'web/components/learning/choices_reverse.html' with form=form %}

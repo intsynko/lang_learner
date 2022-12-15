@@ -21,11 +21,12 @@ class Answer:
 
 
 class LearningModeService:
+    CART = 'cart'
     CHOICES = 'choice'
     CHOICES_REVERSE = 'choice_reverse'
     WORD_BUILD = 'word_builder'
     WORD_WRITE = 'word_writer'
-    TYPES = [CHOICES, CHOICES_REVERSE, WORD_BUILD, WORD_WRITE]
+    TYPES = [CART, CHOICES, CHOICES_REVERSE, WORD_BUILD, WORD_WRITE]
 
     def __init__(self, timeout: int = settings.LEARNER_SESSION_TIMEOUT):
         self.default_timeout = timeout
@@ -79,46 +80,54 @@ class LearningModeService:
     def _next(self, context):
         words = [word for word in context['words'].values() if not all(word['progress'].values())]
         words = words or list(context['words'].values())
-        next_word = random.choice(words)
-        default_form = {
-            "progress": round(context['answered'] / context['answers_count'] * 100),
-        }
-        if self.CHOICES in context['mods'] and not next_word['progress'][self.CHOICES]:
-            choices = [*[word['word_to']
-                         for word in context['words'].values()
-                         if word['id'] != next_word['id']][:3],
-                       next_word['word_to']]
-            random.shuffle(choices)
-            return {
-                **default_form,
-                "type": self.CHOICES,
-                "word": next_word,
-                "choices": choices
+        # 10 попыток чтобы выбирать рандомное слово и взять для него след. режим
+        for i in range(10):
+            next_word = random.choice(words)
+            default_form = {
+                "progress": round(context['answered'] / context['answers_count'] * 100),
             }
-        elif self.CHOICES_REVERSE in context['mods'] and not next_word['progress'][self.CHOICES_REVERSE]:
-            choices = [*[word['word_from']
-                         for word in context['words'].values()
-                         if word['id'] != next_word['id']][:3],
-                       next_word['word_from']]
-            random.shuffle(choices)
-            return {
-                **default_form,
-                "type": self.CHOICES_REVERSE,
-                "word": next_word,
-                "choices": choices
-            }
-        if self.WORD_BUILD in context['mods'] and not next_word['progress'][self.WORD_BUILD]:
-            symbols = list(next_word['word_from'])
-            random.shuffle(symbols)
-            return {
-                **default_form,
-                "type": self.WORD_BUILD,
-                "word": next_word,
-                "symbols": symbols,
-            }
-        if self.WORD_WRITE in context['mods'] and not next_word['progress'][self.WORD_WRITE]:
-            return {
-                **default_form,
-                "type": self.WORD_WRITE,
-                "word": next_word,
-            }
+            if not next_word['progress'][self.CART]:
+                return {
+                    **default_form,
+                    "type": self.CART,
+                    "word": next_word,
+                }
+            if self.CHOICES in context['mods'] and not next_word['progress'][self.CHOICES]:
+                choices = [*[word['word_to']
+                             for word in context['words'].values()
+                             if word['id'] != next_word['id']][:3],
+                           next_word['word_to']]
+                random.shuffle(choices)
+                return {
+                    **default_form,
+                    "type": self.CHOICES,
+                    "word": next_word,
+                    "choices": choices
+                }
+            elif self.CHOICES_REVERSE in context['mods'] and not next_word['progress'][self.CHOICES_REVERSE]:
+                choices = [*[word['word_from']
+                             for word in context['words'].values()
+                             if word['id'] != next_word['id']][:3],
+                           next_word['word_from']]
+                random.shuffle(choices)
+                return {
+                    **default_form,
+                    "type": self.CHOICES_REVERSE,
+                    "word": next_word,
+                    "choices": choices
+                }
+            if self.WORD_BUILD in context['mods'] and not next_word['progress'][self.WORD_BUILD]:
+                symbols = list(next_word['word_from'])
+                random.shuffle(symbols)
+                return {
+                    **default_form,
+                    "type": self.WORD_BUILD,
+                    "word": next_word,
+                    "symbols": symbols,
+                }
+            if self.WORD_WRITE in context['mods'] and not next_word['progress'][self.WORD_WRITE]:
+                return {
+                    **default_form,
+                    "type": self.WORD_WRITE,
+                    "word": next_word,
+                }

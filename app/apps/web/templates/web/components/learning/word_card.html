@@ -14,9 +14,9 @@
         <p class="card-text">{{ form.example_2 }}</p>
         <form method="POST" action=".">
             {% csrf_token %}
-            <input hidden id="word-input" name="word">
+            <input hidden id="word-input" name="word" value="{{ form.id }}">
             <input hidden id="word-input" name="type" value="{{ type }}">
-            <input hidden id="success-input" name="success">
+            <input hidden id="success-input" name="success" value="true">
             <button type="submit" class="btn btn-primary">Go next</button>
         </form>
     </div>
