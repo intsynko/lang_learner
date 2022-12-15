@@ -30,7 +30,7 @@ services:
       - migrate
     volumes:
       - ./app:/app
-      - ./media:/app/media/
+      - ./media:/media/
   migrate:
     image: app:latest
     command: python manage.py migrate

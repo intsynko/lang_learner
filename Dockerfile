@@ -10,7 +10,6 @@ WORKDIR /app
 RUN pip install poetry
 COPY poetry.lock pyproject.toml /app/
 ENV DJANGO_SETTINGS_MODULE=settings.production
-#RUN poetry install
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi
 COPY app /app/
