@@ -9,10 +9,9 @@ urlpatterns = [
     path("", include("apps.web.urls", namespace="web")),
     path("api/", include("api.urls")),
 
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': settings.ASSETS_ROOT}),
 ]
-
-urlpatterns += static(settings.ASSETS_URL, document_root=settings.ASSETS_ROOT)
 
 # if settings.DEBUG:
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
