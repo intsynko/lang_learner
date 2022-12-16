@@ -17,6 +17,7 @@ SECRET_KEY = env("SECRET_KEY")
 IS_PRODUCTION = bool(env("DJANGO_SETTINGS_MODULE") == "settings.production")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+CSRF_TRUSTED_ORIGINS = [f"http://{host}" for host in ALLOWED_HOSTS]
 
 ROOT_URLCONF = "urls"
 
