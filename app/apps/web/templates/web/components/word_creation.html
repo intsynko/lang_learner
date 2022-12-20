@@ -1,4 +1,4 @@
-<div hx-target="this" hx-encoding='multipart/form-data' hx-swap="outerHTML" class="card col-md-4">
+<div hx-target="this" hx-encoding='multipart/form-data' hx-swap="outerHTML" class="card" style="max-width: 400px;">
 
     {% if form.image.value %}
         <img class="card-img-top" src="/media/{{ form.image.value }}">
@@ -10,38 +10,38 @@
         <input name="dictionary" hidden value="{{form.dictionary.value}}">
 
         <div class="card-body row g-3">
-            <div class="col-md-5">
+            <div class="col-md-5 text-responsive-mid">
               Word
-            <input type="text" name="word_from" class="form-control" placeholder="" required="" value="{{form.word_from.value}}">
+            <input type="text" name="word_from" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.word_from.value}}">
             {{ form.word_from.errors }}
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5 text-responsive-mid">
               Translate
-            <input type="text" name="word_to" class="form-control" placeholder="" required="" value="{{form.word_to.value}}">
+            <input type="text" name="word_to" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.word_to.value}}">
               {{ form.word_to.errors }}
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5 text-responsive-mid">
               Transcription
-              <input type="text" name="transcription" class="form-control" placeholder="" required="" value="{{form.transcription.value}}">
+              <input type="text" name="transcription" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.transcription.value}}">
               {{ form.transcription.errors }}
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5 text-responsive-mid">
               Image
                <input type="file" name="image" accept="image/*">
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 text-responsive-mid">
                   Example 1
-                <input type="text" name="example_1" class="form-control" placeholder="" required="" value="{{form.example_1.value}}">
+                <input type="text" name="example_1" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.example_1.value}}">
                   {{ form.example_1.errors }}
             </div>
 
-            <div class="col-md-12">
-                  Example 1
-                <input type="text" name="example_2" class="form-control" placeholder="" required="" value="{{form.example_2.value}}">
+            <div class="col-md-12 text-responsive-mid">
+                  Example 2
+                <input type="text" name="example_2" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.example_2.value}}">
                   {{ form.example_2.errors }}
             </div>
 
@@ -53,7 +53,7 @@
             {% endif %}
 
             <div class="col-md-3">
-                <button hx-post="/word/create/" type="button" class="btn btn-primary">Save</button>
+                <button hx-post="/word/create/" type="button" class="btn btn-primary text-responsive-mid">Save</button>
             </div>
         </div>
     </form>

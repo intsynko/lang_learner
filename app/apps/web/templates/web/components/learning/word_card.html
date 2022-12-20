@@ -3,21 +3,21 @@
         <img class="card-img-top" src="{{ form.image }}">
     {% endif %}
     <div class="card-body">
-        <h5 class="card-title" id="word-form">
+        <h5 class="card-title text-responsive" id="word-form">
             {{ form.word_from }}
             <small class="text-muted fw-light">{{ form.transcription }}</small>
         </h5>
-        <p class="card-text">{{ form.word_to }}</p>
+        <p class="card-text text-responsive">{{ form.word_to }}</p>
 
-        <h6 class="card-title">Examples: </h6>
-        <p class="card-text">{{ form.example_1 }}</p>
-        <p class="card-text">{{ form.example_2 }}</p>
+        <h6 class="card-title text-responsive">Examples: </h6>
+        <p class="card-text text-responsive">{{ form.example_1 }}</p>
+        <p class="card-text text-responsive">{{ form.example_2 }}</p>
         <form method="POST" action=".">
             {% csrf_token %}
             <input hidden id="word-input" name="word" value="{{ form.id }}">
             <input hidden id="word-input" name="type" value="{{ type }}">
             <input hidden id="success-input" name="success" value="true">
-            <button type="submit" class="btn btn-primary">Go next</button>
+            <button type="submit" class="btn btn-primary text-responsive-mid">Go next</button>
         </form>
     </div>
 </div>

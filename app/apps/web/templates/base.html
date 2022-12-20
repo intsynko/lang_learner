@@ -31,4 +31,190 @@
         </div>
     </div>
 </body>
+
+<style>
+/* Смартфоны (портретный и ландшафтный режимы) */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px) {
+/* Здесь задаем стили для браузеров, чья минимальная ширина - 320px, максимальная - 480px. Далее - по аналогии. */
+    .text-responsive {
+        font-size: 4rem;
+    }
+    .text-responsive-mid {
+        font-size: 2rem;
+    }
+    .text-responsive-min {
+        font-size: 1.25rem;
+    }
+    .icon-responsive {
+        width: 60px;
+        height: 60px;
+    }
+    .input-responsive {
+        height: 5rem !important;
+        min-width: 5rem;
+    }
+}
+
+/* Смартфоны (ландшафтный режим) */
+@media only screen
+and (min-width: 321px)
+and (max-device-width: 768px){
+    .text-responsive {
+        font-size: 4rem;
+    }
+    .text-responsive-mid {
+        font-size: 2rem;
+    }
+    .text-responsive-min {
+        font-size: 1.25rem;
+    }
+    .icon-responsive {
+        width: 60px;
+        height: 60px;
+    }
+    .input-responsive {
+        height: 5rem !important;
+        min-width: 5rem;
+    }
+}
+
+/* Смартфоны (портретный режим) */
+@media only screen
+and (max-width: 320px) {
+    .text-responsive {
+        font-size: 4rem;
+    }
+    .text-responsive-mid {
+        font-size: 2rem;
+    }
+    .text-responsive-min {
+        font-size: 1.25rem;
+    }
+    .icon-responsive {
+        width: 60px;
+        height: 60px;
+    }
+    .input-responsive {
+        height: 5rem !important;
+        min-width: 5rem;
+    }
+}
+
+/* Планшеты (портретный и ландшафтный режимы) */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+    .text-responsive {
+        font-size: 2.5rem;
+    }
+    .text-responsive-mid {
+        font-size: 1.5rem;
+    }
+    .text-responsive-min {
+        font-size: 1rem;
+    }
+    .icon-responsive {
+        width: 45px;
+        height: 45px;
+    }
+    .input-responsive {
+        height: 3rem !important;
+        min-width: 3rem;
+    }
+}
+
+/* Планшеты (ландшафтный режим) */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: landscape) {
+    .text-responsive {
+        font-size: 2.5rem;
+    }
+    .text-responsive-mid {
+        font-size: 1.5rem;
+    }
+    .text-responsive-min {
+        font-size: 1rem;
+    }
+    .icon-responsive {
+        width: 45px;
+        height: 45px;
+    }
+    .input-responsive {
+        height: 3rem !important;
+        min-width: 3rem;
+    }
+}
+
+/* Планшеты (портретный режим) */
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px)
+and (orientation: portrait) {
+    .text-responsive {
+        font-size: 2.5rem;
+    }
+    .text-responsive-mid {
+        font-size: 1.5rem;
+    }
+    .text-responsive-min {
+        font-size: 1rem;
+    }
+    .icon-responsive {
+        width: 45px;
+        height: 45px;
+    }
+    .input-responsive {
+        height: 3rem !important;
+        min-width: 3rem;
+    }
+}
+
+/* Ноутбуки и ПК */
+@media only screen
+and (min-width: 1024px) {
+    .text-responsive {
+        font-size: 1.75rem;
+    }
+    .text-responsive-mid {
+        font-size: 1rem;
+    }
+    .text-responsive-min {
+        font-size: 0.75rem;
+    }
+    .icon-responsive {
+        width: 30px;
+        height: 30px;
+    }
+    .input-responsive {
+        height: 2rem !important;
+        min-width: 2rem;
+    }
+}
+
+/* Большие дисплеи */
+@media only screen
+and (min-width: 1824px) {
+    .text-responsive {
+        font-size: 1.75rem;
+    }
+    .text-responsive-mid {
+        font-size: 1rem;
+    }
+    .text-responsive-min {
+        font-size: 0.75rem;
+    }
+    .icon-responsive {
+        width: 30px;
+        height: 30px;
+    }
+    .input-responsive {
+        height: 2rem !important;
+        min-width: 2rem;
+    }
+}
+</style>
 </html>

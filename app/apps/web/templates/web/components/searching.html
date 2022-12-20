@@ -1,9 +1,9 @@
 <div class="container text-center col-lg-6">
     <form role="search" method="GET" action="/">
         <div class="input-group mb-3">
-            <input name="search" type="search" class="form-control" placeholder="Search..."
+            <input name="search" type="search" class="form-control text-responsive-mid" placeholder="Search..."
                    aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search
+            <button class="btn btn-outline-secondary text-responsive-mid" type="submit" id="button-addon2">Search
             </button>
 {#            <button class="btn btn-outline-secondary" type="button" data-toggle="collapse"#}
 {#                    data-target="#filters_id" role="button" aria-expanded="false" aria-controls="filters_id">#}
@@ -44,7 +44,7 @@
     <div class="container mt-5">
         <div class="row">
             {% for dictionary in dictionaries %}
-                <div class="col col-sm-3 mb-3">
+                <div class="col col-lg-auto mb-3">
                     {% include "web/components/dictionary_cart_mini.html" %}
                 </div>
             {% endfor %}

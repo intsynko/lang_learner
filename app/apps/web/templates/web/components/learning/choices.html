@@ -4,12 +4,12 @@
             <img class="card-img-top" src="{{ form.word.image }}">
         {% endif %}
     <div id="choices" class="text-center">
-        <h5 class="card-title">{{ form.word.word_from }}</h5>
+        <h5 class="card-title text-responsive">{{ form.word.word_from }}</h5>
         {% for choice in form.choices %}
             <button type="button" onclick="show(
                     {{ form.word.id }},
                     {% if form.word.word_to == choice %}true{% else %}false{% endif %}
-                    )" class="btn btn-secondary col-md-7 mt-2 mb-2">{{ choice }}</button>
+                    )" class="btn btn-secondary col-md-7 mt-2 mb-2 text-responsive">{{ choice }}</button>
         {% endfor %}
     </div>
 </div>

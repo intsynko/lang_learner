@@ -3,9 +3,9 @@
 {% block content %}
     {% include 'web/components/dictionary_creation.html' with form=form %}
     {% if form.id.value and form.id.value != 'None' %}
-        <h4 class="mb-3">Words</h4>
+        <h4 class="mb-3 text-responsive">Words</h4>
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="words">
+            <div class="row row-cols-md-auto" id="words">
                 {% for word in words %}
                     {% include 'web/components/word_creation.html' with form=word csrf_token=csrf_token %}
                 {% endfor %}
@@ -13,7 +13,7 @@
         </div>
         <hr class="my-4">
 
-        <button class="btn btn-primary col-5" type="button"
+        <button class="btn btn-primary col-5 text-responsive-mid" type="button"
                 hx-get="{% url 'web:word-form' id=form.id.value %}"
                 hx-swap="beforeend" hx-target="#words">
             Add

@@ -2,20 +2,11 @@
 
 {% block content %}
 
-<style>
-.clickable-row {
-    cursor: pointer;
-}
-.clickable-row:hover{
-    background: #f1efef;
-}
-</style>
-
     <div class="container">
         <div class="row text-center">
             {% if user.is_authenticated %}
                 <div class="mb-5">
-                    <h1 class="fw-light">Hello, {{ user.username }}
+                    <h1 class="fw-light text-responsive">Hello, {{ user.username }}
                     {% if progress %}
                         , your last week progress:
                     {% else %}
@@ -34,8 +25,8 @@
                 {% include 'web/components/searching.html' %}
             {% else %}
                 <div style="margin-top: 10%;">
-                    <h1 class="fw-light">Dictionaries from users all over the world</h1>
-                    <p class="lead text-muted">You can simplify learning new languages from all over the world dictionaries.</p>
+                    <h1 class="fw-light text-responsive">Dictionaries from users all over the world</h1>
+                    <p class="lead text-muted text-responsive">You can simplify learning new languages from all over the world dictionaries.</p>
                     {% include 'web/components/searching.html' %}
                 </div>
 

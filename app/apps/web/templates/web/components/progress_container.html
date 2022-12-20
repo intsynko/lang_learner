@@ -2,14 +2,14 @@
     <div class="col col-lg-4">
         <div class="card mb-2">
           <div class="card-body">
-            <h5 class="card-title">{{ progress_.dictionary__name }}
-                <span class="badge bg-secondary">{{ progress_.amount }} times</span>
+            <h5 class="card-title text-responsive">{{ progress_.dictionary__name }}
+                <span class="badge bg-secondary text-responsive-mid">{{ progress_.amount }} times</span>
             </h5>
 {#            <p class="card-text">You have learned {{ progress_.amount }} times for last week </p>#}
               {% if progress_.attempts|length > 1 %}
                 <canvas id="chart-{{ progress_.dictionary_id }}" height="50"></canvas>
               {% endif %}
-            <a class="btn btn-primary mt-2" href="/dictionary/{{ progress_.dictionary_id }}/" class="btn btn-primary mt-2">Learn it</a>
+            <a class="btn btn-primary text-responsive-min mt-2" href="/dictionary/{{ progress_.dictionary_id }}/" class="btn btn-primary mt-2">Learn it</a>
           </div>
         </div>
     </div>
