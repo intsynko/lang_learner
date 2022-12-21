@@ -56,7 +56,8 @@ class WordForm(forms.ModelForm):
 
     class Meta:
         model = dict_models.Words
-        fields = ("id", "dictionary", "word_from", "word_to", "example_1", "example_2", "image", "transcription")
+        fields = ("id", "dictionary", "word_from", "word_to", "example_1", "example_2", "image", "transcription",
+                  "prononsiation")
 
 
 class RepeatForm(forms.Form):

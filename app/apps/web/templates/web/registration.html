@@ -7,26 +7,26 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{ form.email.value }}">
+                    <label for="email" class="form-label text-responsive">Email address</label>
+                    <input type="email" class="form-control input-responsive text-responsive" id="email" name="email" placeholder="name@example.com" value="{{ form.email.value }}">
                     {{ form.email.errors }}
                 </div>
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ form.username.value }}">
+                    <label for="username" class="form-label text-responsive">Username</label>
+                    <input type="text" class="form-control input-responsive text-responsive" id="username" name="username" value="{{ form.username.value }}">
                     {{ form.username.errors }}
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" value="{{ form.password.value }}">
+                    <label for="password" class="form-label text-responsive">Password</label>
+                    <input type="password" class="form-control input-responsive text-responsive" id="password" name="password" value="{{ form.password.value }}">
                     {{ form.password.errors }}
                 </div>
                 <div class="mb-3">
-                    <label for="password-repeat" class="form-label">Repeat password</label>
-                    <input type="password" class="form-control" id="password-repeat" name="password_repeat" value="{{ form.password_repeat.value }}">
+                    <label for="password-repeat" class="form-label text-responsive">Repeat password</label>
+                    <input type="password" class="form-control input-responsive text-responsive" id="password-repeat" name="password_repeat" value="{{ form.password_repeat.value }}">
                     {{ form.password_repeat.errors }}
                 </div>
-                <button type="submit" class="btn btn-primary">Create new account</button>
+                <button type="submit" class="btn btn-primary text-responsive-mid">Create new account</button>
             </form>
         </div>
     </div>

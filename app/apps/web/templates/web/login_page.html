@@ -14,22 +14,22 @@
 
            <div>
             {% for type, error in form.error_messages.items %}
-            <div class="alert alert-danger text-responsive" role="alert">
+            <div class="alert alert-danger text-responsive-min" role="alert">
               {{ error }}
             </div>
             {% endfor %}
           </div>
 
           <div class="form-floating">
-            <input type="email" class="form-control input-responsive text-responsive" id="floatingInput" name="username" placeholder="name@example.com">
-            <label for="floatingInput" class="text-responsive">Email address</label>
+            <input type="email" class="form-control input-responsive text-responsive-mid" id="floatingInput" name="username" placeholder="name@example.com">
+            <label for="floatingInput" class="text-responsive-mid">Email address</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control input-responsive text-responsive" id="floatingPassword" name="password" placeholder="Password">
-            <label for="floatingPassword" class="text-responsive">Password</label>
+            <input type="password" class="form-control input-responsive text-responsive-mid" id="floatingPassword" name="password" placeholder="Password">
+            <label for="floatingPassword" class="text-responsive-mid">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary text-responsive" type="submit">Sign in</button>
-          <p class="mt-5 mb-3 text-muted text-responsive">© Language Learner</p>
+          <button class="w-100 btn btn-lg btn-primary text-responsive-mid" type="submit">Sign in</button>
+          <p class="mt-5 mb-3 text-muted text-responsive-mid">© Language Learner</p>
         </form>
       </div>
     </main>

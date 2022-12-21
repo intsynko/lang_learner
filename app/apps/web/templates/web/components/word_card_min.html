@@ -3,6 +3,9 @@
         <h5 class="card-title text-responsive" id="word-form">
             {{ form.word_from.value }}
             <small class="text-muted fw-light">{{ form.transcription.value }}</small>
+            <button id="audio" class="btn btn-default" onclick="new Audio('/media/{{ form.prononsiation.value }}').play();">
+                <img src="/assets/icons8-audio-30.png" class="icon-responsive" alt="audio">
+            </button>
         </h5>
         <p class="card-text text-responsive" id="word-form">{{ form.word_to.value }}</p>
     </div>

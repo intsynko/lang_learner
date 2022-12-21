@@ -33,6 +33,10 @@
                <input type="file" name="image" accept="image/*">
             </div>
 
+            <div>
+                <button type="button" class="btn btn-primary text-responsive-mid" {% if not form.prononsiation.value %} disabled {% endif %} onclick="new Audio('/media/{{ form.prononsiation.value }}').play();">Audio</button>
+            </div>
+
             <div class="col-md-12 text-responsive-mid">
                   Example 1
                 <input type="text" name="example_1" class="form-control input-responsive text-responsive-mid" placeholder="" required="" value="{{form.example_1.value}}">

@@ -15,6 +15,7 @@ djangorestframework-simplejwt = "^5.2.2"
 pillow = "^9.3.0"
 django-redis = "^5.2.0"
 whitenoise = "^6.2.0"
+gtts = "^2.3.0"
 
 
 [build-system]

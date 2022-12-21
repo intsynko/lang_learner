@@ -23,7 +23,10 @@ class WordCreatePage(TemplateView):
             return HttpResponseForbidden()
         form = WordForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
-            form.save()
+            word = form.save(commit=False)
+            if not word.prononsiation:
+                word.load_prononsiation()
+            word.save()
             #return render(request, "web/components/word.html", context={"form": form})
         return render(request, "web/components/word_creation.html", context={"form": form})
 
