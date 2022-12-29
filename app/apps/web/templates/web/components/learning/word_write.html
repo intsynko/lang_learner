@@ -1,7 +1,7 @@
 
 <div class="card" id="choices">
         {% if form.word.image %}
-            <img class="card-img-top" src="{{ form.word.image }}">
+            <img class="card-img-top" src="{{ form.word.image }}" style="max-height: 70vw">
         {% endif %}
     <div id="choices" class="card-body">
         <h5 class="card-title text-responsive">{{ form.word.word_to }}</h5>
@@ -10,7 +10,7 @@
            <input name="result" id="result" class="form-control input-responsive text-responsive">
         </div>
         <div class="col-md-6 mt-2">
-            <button onclick="check()" type="button" class="btn btn-primary text-responsive-mid">Check</button>
+            <button onclick="check()" type="button" class="btn btn-primary text-responsive">Check</button>
         </div>
     </div>
 </div>

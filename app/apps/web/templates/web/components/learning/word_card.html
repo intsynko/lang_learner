@@ -1,6 +1,6 @@
 <div class="card">
     {% if form.image %}
-        <img class="card-img-top" src="{{ form.image }}">
+        <img class="card-img-top" src="{{ form.image }}" style="max-height: 70vw">
     {% endif %}
     <div class="card-body">
         <h5 class="card-title text-responsive" id="word-form">
@@ -13,14 +13,14 @@
         <p class="card-text text-responsive">{{ form.word_to }}</p>
 
         <h6 class="card-title text-responsive">Examples: </h6>
-        <p class="card-text text-responsive">{{ form.example_1 }}</p>
-        <p class="card-text text-responsive">{{ form.example_2 }}</p>
+        <p class="card-text text-responsive-mid">{{ form.example_1 }}</p>
+        <p class="card-text text-responsive-mid">{{ form.example_2 }}</p>
         <form method="POST" action=".">
             {% csrf_token %}
             <input hidden id="word-input" name="word" value="{{ form.id }}">
             <input hidden id="word-input" name="type" value="{{ type }}">
             <input hidden id="success-input" name="success" value="true">
-            <button type="submit" class="btn btn-primary text-responsive-mid">Go next</button>
+            <button type="submit" class="btn btn-primary text-responsive mt-3" style="padding-left: 2rem; padding-right: 2rem;">Go next</button>
         </form>
     </div>
 </div>

@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container d-flex align-items-center justify-content-center vh-100">
     <main class="text-center">
-      <div style="min-width: 300px; max-width: 500px">
+      <div class="col-md-auto col-lg-auto">
         <form method="POST">
           {% csrf_token %}
           <h1 class="h3 mb-3 fw-normal text-responsive">Please sign in</h1>
@@ -20,16 +20,16 @@
             {% endfor %}
           </div>
 
-          <div class="form-floating">
+          <div class="form-floating mt-3">
             <input type="email" class="form-control input-responsive text-responsive-mid" id="floatingInput" name="username" placeholder="name@example.com">
             <label for="floatingInput" class="text-responsive-mid">Email address</label>
           </div>
-          <div class="form-floating">
+          <div class="form-floating mt-3">
             <input type="password" class="form-control input-responsive text-responsive-mid" id="floatingPassword" name="password" placeholder="Password">
             <label for="floatingPassword" class="text-responsive-mid">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary text-responsive-mid" type="submit">Sign in</button>
-          <p class="mt-5 mb-3 text-muted text-responsive-mid">© Language Learner</p>
+          <button class="w-100 btn btn-lg btn-primary text-responsive-mid mt-3" type="submit">Sign in</button>
+          <p class="mt-5 text-muted text-responsive-mid">© Language Learner</p>
         </form>
       </div>
     </main>

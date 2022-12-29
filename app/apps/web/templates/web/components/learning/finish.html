@@ -1,17 +1,17 @@
 <div class="card">
 
-    <img class="card-img-top" src="/assets/congrats.png">
+    <img class="card-img-top" src="/assets/congrats.png" style="max-height: 70vw">
 
     <div class="card-body">
         <h5 class="card-title text-responsive">You have finished! Congrats! 🎉 </h5>
 
         <div class="col">
             <div class="row mb-2">
-                <a type="submit" href="/" class="btn btn-primary text-responsive-mid">Go to main page</a>
+                <a type="submit" href="/" class="btn btn-primary text-responsive">Go to main page</a>
             </div>
             {% if user.is_authenticated %}
                 <div class="row mb-2">
-                    <a type="submit" href="/dictionary/" class="btn btn-primary text-responsive-mid">Go to my dicts</a>
+                    <a type="submit" href="/dictionary/" class="btn btn-primary text-responsive">Go to my dicts</a>
                 </div>
             {% endif %}
         </div>

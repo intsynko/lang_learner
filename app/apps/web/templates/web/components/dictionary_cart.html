@@ -2,19 +2,19 @@
 <div class="card rounded-3 shadow-sm">
     <div class="card-header d-flex align-items-baseline">
         <a href="/?lang={{dictionary.lang_from.code}}" role="button">
-            <img src="{{dictionary.lang_from.icon}}" alt="lang_from" class="icon-responsive" style="margin-top: -10px">
+            <img src="{{dictionary.lang_from.icon}}" alt="lang_from" class="icon-responsive" style="margin-top: -50%">
         </a>
         <h1 class="text-responsive">{{dictionary.name}}</h1>
         {% if user.is_authenticated %}
             {% if dictionary.is_mine %}
                 <a type="button" class="btn btn-default" href="/dictionary/{{dictionary.id}}/update/" class="icon-responsive">
-                    <img src="/assets/icons8-pencil-30.png" class="icon-responsive" alt="pin">
+                    <img src="/assets/icons8-pencil-30.png" class="icon-responsive" alt="pin" style="margin-top: -50%">
                 </a>
                 <form action="/dictionary/{{dictionary.id}}/remove/" method="POST">
                     {% csrf_token %}
                     <input name="path" hidden value="{{ request.path }}">
                     <button type="submit" class="btn btn-default">
-                        <img src="/assets/icons8-remove-30.png" class="icon-responsive" alt="pin">
+                        <img src="/assets/icons8-remove-30.png" class="icon-responsive" alt="delete" style="margin-top: -50%; margin-left: -70%;">
                     </button>
                 </form>
             {% elif not dictionary.pinned %}
@@ -22,7 +22,7 @@
                     {% csrf_token %}
                     <input name="path" hidden value="{{ request.path }}">
                     <button type="submit" class="btn btn-default">
-                        <img src="/assets/icons8-pin-30.png" class="icon-responsive" alt="pin">
+                        <img src="/assets/icons8-pin-30.png" class="icon-responsive" alt="pin" style="margin-top: -50%">
                     </button>
                 </form>
             {% else%}
@@ -30,7 +30,7 @@
                     {% csrf_token %}
                     <input name="path" hidden value="{{ request.path }}">
                     <button type="submit" class="btn btn-default">
-                        <img src="/assets/icons8-pin-remove-30.png" class="icon-responsive" alt="pin">
+                        <img src="/assets/icons8-pin-remove-30.png" class="icon-responsive" alt="unpin" style="margin-top: -50%">
                     </button>
                 </form>
             {% endif %}

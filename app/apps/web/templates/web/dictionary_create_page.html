@@ -1,24 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% include 'web/components/dictionary_creation.html' with form=form %}
-    {% if form.id.value and form.id.value != 'None' %}
-        <h4 class="mb-3 text-responsive">Words</h4>
-        <div class="container">
-            <div class="row row-cols-md-auto" id="words">
-                {% for word in words %}
-                    {% include 'web/components/word_creation.html' with form=word csrf_token=csrf_token %}
-                {% endfor %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 col-lg-12 mt-3">
+                {% include 'web/components/dictionary_creation.html' with form=form %}
             </div>
+{#        <div class="col-md-12 col-lg-6 mt-3">#}
+{#            <h4 class="d-flex justify-content-between align-items-center mb-3 text-responsive-mid">#}
+{#              <span class="text-primary">Collabarate with</span>#}
+{#            </h4>#}
+{#            <form role="search" method="GET" action="collobarators">#}
+{#                <div class="input-group mb-3">#}
+{#                    <input name="search" type="search" class="form-control text-responsive-mid" placeholder="Search..." aria-label="Search">#}
+{#                    <button class="btn btn-outline-secondary text-responsive-mid" type="submit" id="button-addon2">Search</button>#}
+{#                </div>#}
+{#            </form>#}
+{##}
+{#            <ul class="list-group mb-3">#}
+{#                <li class="list-group-item d-flex justify-content-between lh-sm">#}
+{#                    <div>#}
+{#                        <h6 class="my-0 text-responsive-mid">Username</h6>#}
+{#                    </div>#}
+{#                    <button class="btn btn-success">Add</button>#}
+{#                </li>#}
+{#            </ul>#}
+{##}
+{#            <ul class="list-group mb-3">#}
+{#                <li class="list-group-item d-flex justify-content-between lh-sm">#}
+{#                    <div>#}
+{#                        <h6 class="my-0 text-responsive-mid">Username</h6>#}
+{#                    </div>#}
+{#                    <button class="btn btn-danger"> Remove </button>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
         </div>
-        <hr class="my-4">
 
-        <button class="btn btn-primary col-5 text-responsive-mid" type="button"
-                hx-get="{% url 'web:word-form' id=form.id.value %}"
-                hx-swap="beforeend" hx-target="#words">
-            Add
-        </button>
-        <hr class="my-4">
-    {% endif %}
+        {% if form.id.value and form.id.value != 'None' %}
+            <h4 class="mb-3 text-responsive">Words</h4>
+            <div class="container">
+                <div class="row" id="words">
+                    {% for word in words %}
+                        <div class="col-md-12 col-lg-4">
+                            {% include 'web/components/word_creation.html' with form=word csrf_token=csrf_token %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <hr class="my-4">
 
+            <button class="btn btn-primary col-5 text-responsive-mid" type="button"
+                    hx-get="{% url 'web:word-form' id=form.id.value %}"
+                    hx-swap="beforeend" hx-target="#words">
+                Add
+            </button>
+            <hr class="my-4">
+        {% endif %}
+    </div>
 {% endblock %}

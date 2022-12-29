@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="progress mb-4">
-      <div class="progress-bar" style="width: {{ form.progress }}%" role="progressbar" aria-valuenow="{{ form.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="container">
+        <div class="progress mb-4">
+          <div class="progress-bar" style="width: {{ form.progress }}%" role="progressbar" aria-valuenow="{{ form.progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col col-lg-4 mx-auto">
+            <div class="col col-lg-6 mx-auto">
                     {% if form.type == 'cart' %}
                         {% include 'web/components/learning/word_card.html' with form=form.word type=form.type %}
                         <audio src="{{ form.word.prononsiation }}" autoplay></audio>

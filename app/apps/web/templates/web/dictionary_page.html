@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        {% for dictionary in dictionaries %}
-            <div class="col mb-4 text-center">
-                {% include "web/components/dictionary_cart.html" with limited=True %}
-            </div>
-        {% endfor %}
+    <div class="container">
+        <div class="row text-center">
+            {% for dictionary in dictionaries %}
+                <div class="col-sm-12 col-lg-4 mb-4 text-center">
+                    {% include "web/components/dictionary_cart.html" with limited=True %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}

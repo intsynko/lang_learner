@@ -1,8 +1,8 @@
-<div class="text-center container  col-md-7">
+<div class="text-center">
     {% if form.id.value %}
-        <h4 class="mb-3 text-responsive">Edit</h4>
+        <h4 class="text-responsive">Edit</h4>
     {% else %}
-        <h4 class="mb-3 text-responsive">New dictionary creation</h4>
+        <h4 class="text-responsive-mid">New dictionary creation</h4>
     {% endif %}
     <form class="needs-validation" method="POST" action=".">
       {% csrf_token %}
@@ -12,14 +12,14 @@
     {% endif %}
       <div class="row g-3">
         <div class="col-12">
-          <label for="firstName" class="form-label text-responsive">Name</label>
-          <input type="text" name="name" class="form-control text-responsive input-responsive" id="firstName" placeholder="" value="{{ form.name.value|default_if_none:"" }}">
+          <label for="firstName" class="form-label text-responsive-mid">Name</label>
+          <input type="text" name="name" class="form-control text-responsive-mid" id="firstName" placeholder="" value="{{ form.name.value|default_if_none:"" }}">
             {{ form.name.errors }}
         </div>
 
-        <div class="col-md-auto">
-          <label for="language_from" class="form-label text-responsive">Language from</label>
-          <select class="form-select text-responsive" id="language_from" name="language_from">
+        <div class="col-md-4">
+          <label for="language_from" class="form-label text-responsive-mid">Language from</label>
+          <select class="form-select text-responsive-mid" id="language_from" name="language_from">
             <option value selected> All languages </option>
             {% for lang in languages %}
                 <option value="{{lang.id}}" {% if form.language_from.value|upper == lang.id|upper %}selected{% endif%}>
@@ -33,9 +33,9 @@
           </div>
         </div>
 
-        <div class="col-md-auto">
-         <label for="language_to" class="form-label text-responsive">Language to</label>
-          <select class="form-select text-responsive" id="language_to" name="language_to">
+        <div class="col-md-4">
+         <label for="language_to" class="form-label text-responsive-mid">Language to</label>
+          <select class="form-select text-responsive-mid" id="language_to" name="language_to">
             <option selected value> All languages </option>
             {% for lang in languages %}
                 <option value="{{lang.id}}" {% if form.language_to.value|upper == lang.id|upper %}selected{% endif%}>
@@ -49,9 +49,9 @@
           </div>
         </div>
 
-        <div class="col-md-auto">
-          <label for="level" class="form-label text-responsive">Level</label>
-          <select class="form-select text-responsive" id="level" name="level" required="">
+        <div class="col-md-4">
+          <label for="level" class="form-label text-responsive-mid">Level</label>
+          <select class="form-select text-responsive-mid" id="level" name="level" required="">
             <option selected value> All levels </option>
             {% for level in levels %}
                 <option value="{{level.id}}" {% if form.level.value|upper == level.id|upper %}selected{% endif%}>
@@ -66,7 +66,7 @@
       </div>
 
         <div class="col-12">
-            <select name="tags" class="form-select form-select-md text-responsive" multiple>
+            <select name="tags" class="form-select form-select-md text-responsive-mid" multiple>
                 {% for tag in tags %}
                     <option value="{{tag.id}}" {% if tag.id|upper in form.tags.value|join:'' %}selected{% endif%}>
                         {{tag.name}}
@@ -77,18 +77,18 @@
         </div>
 
         <div class="form-check col-12">
-            <input type="checkbox" class="form-check-input input-responsive" id="is_public" name="is_public" {% if form.is_public.value %}checked{% endif%}>
-            <label class="form-check-label text-responsive" for="is_public">All users can see it</label>
+            <input type="checkbox" class="form-check-input" id="is_public" name="is_public" {% if form.is_public.value %}checked{% endif%}>
+            <label class="form-check-label text-responsive-mid" for="is_public">All users can see it</label>
         </div>
 
         <div class="col-12">
-          <label for="firstName" class="form-label text-responsive">Session count</label>
-          <input type="number" name="session_count" class="form-control input-responsive text-responsive" value="{{ form.session_count.value }}">
+          <label for="firstName" class="form-label text-responsive-mid">Session count</label>
+          <input type="number" name="session_count" class="form-control text-responsive-mid" value="{{ form.session_count.value }}">
             {{ form.name.errors }}
         </div>
 
         <div class="col-12">
-            <select name="learning_mods" class="form-select form-select-md text-responsive" multiple>
+            <select name="learning_mods" class="form-select form-select-md text-responsive-mid" multiple>
                 {% for learning_mod in learning_mods %}
                     <option value="{{learning_mod.id}}" {% if learning_mod.id|upper in form.learning_mods.value|join:'' %}selected{% endif%}>
                         {{learning_mod.name}}

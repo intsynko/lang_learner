@@ -18,21 +18,32 @@
     <!-- Axios-->
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 </head>
-<body style="background-color:#f5f5f5">
-    <header>
-
+<body class="bg-light">
+    <div class="container">
         {% block header%}
             {% include 'web/components/header.html' %}
         {% endblock %}
-    </header>
+    </div>
     <div id="content">
-        <div class="container">
         {% block content %}{% endblock %}
-        </div>
     </div>
 </body>
 
 <style>
+a {
+    text-decoration: none;
+}
+a:hover {
+    color: black;
+}
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: 920px;
+    }
+}
+
+
 /* Смартфоны (портретный и ландшафтный режимы) */
 @media only screen
 and (min-device-width: 320px)
@@ -52,8 +63,8 @@ and (max-device-width: 480px) {
         height: 60px;
     }
     .input-responsive {
-        height: 7em !important;
-        min-width: 7rem;
+        height: 5em !important;
+        min-width: 5rem;
     }
 }
 
@@ -75,8 +86,8 @@ and (max-device-width: 768px){
         height: 60px;
     }
     .input-responsive {
-        height: 7rem !important;
-        min-width: 7rem;
+        height: 5rem !important;
+        min-width: 5rem;
     }
 }
 
@@ -97,8 +108,8 @@ and (max-width: 320px) {
         height: 60px;
     }
     .input-responsive {
-        height: 7rem !important;
-        min-width: 7rem;
+        height: 5rem !important;
+        min-width: 5rem;
     }
 }
 
@@ -120,8 +131,8 @@ and (max-device-width: 1024px) {
         height: 45px;
     }
     .input-responsive {
-        height: 5rem !important;
-        min-width: 5rem;
+        height: 4rem !important;
+        min-width: 4rem;
     }
 }
 
@@ -144,8 +155,8 @@ and (orientation: landscape) {
         height: 45px;
     }
     .input-responsive {
-        height: 5rem !important;
-        min-width: 5rem;
+        height: 4rem !important;
+        min-width: 4rem;
     }
 }
 
@@ -168,8 +179,8 @@ and (orientation: portrait) {
         height: 45px;
     }
     .input-responsive {
-        height: 5rem !important;
-        min-width: 5rem;
+        height: 4rem !important;
+        min-width: 4rem;
     }
 }
 

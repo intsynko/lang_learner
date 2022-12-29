@@ -1,20 +1,18 @@
-<div class="container">
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none text-responsive-mid">
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center col-md-auto mb-2 text-dark text-decoration-none text-responsive-mid">
       Language Learner
   </a>
 
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+  <ul class="nav nav-pills mb-2 justify-content-center mb-md-2 ml-md-2 mx-5">
     <li class="nav-item"><a href="/" class="nav-link text-responsive-mid {% if request.path == '/' %}active{% endif%}" aria-current="page">Home</a></li>
     {% if user.is_authenticated %}
       <li class="nav-item"><a href="/dictionary/" class="nav-link text-responsive-mid {% if request.path == '/dictionary/' %}active{% endif%}">My Dictionaries</a></li>
       <li class="nav-item"><a href="/dictionary/create/" class="nav-link text-responsive-mid {% if request.path == '/dictionary/create/' %}active{% endif%}">Create new dictionary</a></li>
       <li class="nav-item"><a href="/dictionary/upload/" class="nav-link text-responsive-mid {% if request.path == '/dictionary/upload/' %}active{% endif%}" aria-current="page">Upload dictionary</a></li>
     {% endif %}
-<!--    <li class="nav-item"><a href="/" class="nav-link">About</a></li>-->
   </ul>
 
-  <div class="col-md-3 text-end">
+  <div class="col-md-auto text-end">
     {% if user.is_authenticated %}
       <a type="button" class="btn btn-primary text-responsive-mid" href="/logout">Sign-out</a>
     {% else %}
@@ -23,4 +21,3 @@
     {% endif %}
   </div>
 </header>
-</div>

@@ -3,42 +3,10 @@
         <div class="input-group mb-3">
             <input name="search" type="search" class="form-control text-responsive-mid" placeholder="Search..."
                    aria-label="Search">
-            <button class="btn btn-outline-secondary text-responsive-mid" type="submit" id="button-addon2">Search
-            </button>
-{#            <button class="btn btn-outline-secondary" type="button" data-toggle="collapse"#}
-{#                    data-target="#filters_id" role="button" aria-expanded="false" aria-controls="filters_id">#}
-{#                Filters#}
-{#            </button>#}
+            <button class="btn btn-outline-secondary text-responsive-mid" type="submit" id="button-addon2">Search</button>
         </div>
-
-{#        <div class="collapse multi-collapse" id="filters_id">#}
-{#            <div class="card card-body">#}
-{#                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry#}
-{#                richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson#}
-{#                cred nesciunt sapiente ea proident.#}
-{#            </div>#}
             {% include "web/components/filters.html" %}
-{#        </div>#}
     </form>
-
-
-
-    {#    <table class="table mt-3">#}
-    {#        <thead>#}
-    {#            <tr>#}
-    {#              <th scope="col">Language</th>#}
-    {#              <th scope="col">Name</th>#}
-    {#              <th scope="col">Level</th>#}
-    {#              <th scope="col">Tags</th>#}
-    {#              <th scope="col">Rating</th>#}
-    {#            </tr>#}
-    {#        </thead>#}
-    {#        <tbody>#}
-    {#            {% for dict in dictionaries%}#}
-    {#                {% include "web/components/dictionary_raw.html" %}#}
-    {#            {% endfor %}#}
-    {#        </tbody>#}
-    {#    </table>#}
 </div>
 
     <div class="container mt-5">
